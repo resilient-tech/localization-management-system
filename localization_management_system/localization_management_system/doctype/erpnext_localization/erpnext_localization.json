@@ -1,0 +1,396 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2025-12-17 16:15:39.913484",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_section",
+  "title",
+  "country",
+  "applicable_for",
+  "estimated_completion_date",
+  "column_break_pqnf",
+  "repo_permission_granted",
+  "description",
+  "progress_details_section",
+  "status",
+  "progress_status",
+  "column_break_yvhz",
+  "remarks",
+  "section_break_dzgs",
+  "assigned_enabler",
+  "naming_series",
+  "column_break_gtux",
+  "assigned_reviewer",
+  "developer_tab",
+  "developer_details_section",
+  "builder_mail",
+  "is_partner",
+  "column_break_ynrg",
+  "partner",
+  "company_name",
+  "company_website",
+  "development_tab",
+  "development_details_section",
+  "repo",
+  "repo_visibility",
+  "column_break_teue",
+  "documentation_url",
+  "marketplace_tab",
+  "section_break_idyw",
+  "is_published",
+  "column_break_cogw",
+  "section_break_zeen",
+  "published_date",
+  "column_break_dkec",
+  "marketplace_url",
+  "goverment_tab",
+  "country_have_policy_for_open_source",
+  "have_identified_influence_person_to_influence",
+  "open_source_policy_doc",
+  "column_break_kxza",
+  "apply_to_review_localization_to_govt",
+  "letter_send_to_govt",
+  "govt_has_approved_localization"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pqnf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "ERP-LOC-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Country",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "default": "Accounting",
+   "fieldname": "applicable_for",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Applicable for",
+   "options": "Accounting\nHR"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "basic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Basics"
+  },
+  {
+   "fieldname": "developer_details_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_partner",
+   "fieldtype": "Check",
+   "label": "Is Partner"
+  },
+  {
+   "fieldname": "column_break_ynrg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "builder_mail",
+   "fieldtype": "Data",
+   "label": "Builder Mail",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval: !doc.is_partner",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "depends_on": "eval: !doc.is_partner",
+   "fieldname": "company_website",
+   "fieldtype": "Data",
+   "label": "Company Website",
+   "options": "URL"
+  },
+  {
+   "fieldname": "development_details_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_teue",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "repo",
+   "fieldtype": "Data",
+   "label": "Repository",
+   "options": "URL"
+  },
+  {
+   "depends_on": "eval: doc.repo",
+   "fieldname": "repo_visibility",
+   "fieldtype": "Select",
+   "label": "Repo Visibility",
+   "options": "\nPublic\nPrivate"
+  },
+  {
+   "fieldname": "documentation_url",
+   "fieldtype": "Data",
+   "label": "Documentation URL",
+   "options": "URL"
+  },
+  {
+   "fieldname": "estimated_completion_date",
+   "fieldtype": "Date",
+   "label": "Estimated Date for Completion"
+  },
+  {
+   "default": "No",
+   "fieldname": "repo_permission_granted",
+   "fieldtype": "Select",
+   "label": "Repo Permission Grant to Frappe Team",
+   "options": "Yes\nNo"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_dzgs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_gtux",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "developer_tab",
+   "fieldtype": "Tab Break",
+   "label": "Developer"
+  },
+  {
+   "fieldname": "development_tab",
+   "fieldtype": "Tab Break",
+   "label": "Development"
+  },
+  {
+   "fieldname": "progress_details_section",
+   "fieldtype": "Section Break",
+   "label": "Progress"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Open\nReplied\nPending\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_yvhz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "marketplace_tab",
+   "fieldtype": "Tab Break",
+   "label": "Marketplace"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_published",
+   "fieldtype": "Check",
+   "label": "Is Published"
+  },
+  {
+   "fieldname": "column_break_cogw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval: doc.is_published",
+   "fieldname": "marketplace_url",
+   "fieldtype": "Data",
+   "label": "Marketplace URL",
+   "options": "URL"
+  },
+  {
+   "depends_on": "eval: doc.is_published",
+   "fieldname": "published_date",
+   "fieldtype": "Date",
+   "label": "Published Date"
+  },
+  {
+   "fieldname": "section_break_zeen",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_dkec",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_idyw",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "depends_on": "eval: doc.is_partner",
+   "fieldname": "partner",
+   "fieldtype": "Link",
+   "label": "Partner",
+   "mandatory_depends_on": "eval: doc.is_partner",
+   "options": "Frappe Partner"
+  },
+  {
+   "fieldname": "progress_status",
+   "fieldtype": "Select",
+   "label": "Progress Status",
+   "options": "\nShortlisted Partner\nDevelopment Started\nDevelopment Completed\nTesting Completed\nListed on Frappe Cloud\nAuto-install Enabled on FC"
+  },
+  {
+   "fieldname": "goverment_tab",
+   "fieldtype": "Tab Break",
+   "label": "Goverment"
+  },
+  {
+   "fieldname": "country_have_policy_for_open_source",
+   "fieldtype": "Select",
+   "label": "Does Country have policy for open source",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_kxza",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval: doc.country_have_policy_for_open_source === \"No\"",
+   "fieldname": "have_identified_influence_person_to_influence",
+   "fieldtype": "Select",
+   "label": "If no, have you identified local person to influence",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.country_have_policy_for_open_source === \"Yes\"",
+   "fieldname": "open_source_policy_doc",
+   "fieldtype": "Data",
+   "label": "Open source Policy Doc",
+   "options": "URL"
+  },
+  {
+   "fieldname": "apply_to_review_localization_to_govt",
+   "fieldtype": "Select",
+   "label": "Apply to review Localization to Govt.",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.apply_to_review_localization_to_govt === \"Yes\"",
+   "fieldname": "letter_send_to_govt",
+   "fieldtype": "Attach",
+   "label": "Letter Send to Govt."
+  },
+  {
+   "depends_on": "eval: doc.apply_to_review_localization_to_govt === \"Yes\"",
+   "fieldname": "govt_has_approved_localization",
+   "fieldtype": "Select",
+   "label": "Govt. has Approved Localization",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "assigned_enabler",
+   "fieldtype": "Link",
+   "label": "Assigned Enabler",
+   "options": "User"
+  },
+  {
+   "fieldname": "assigned_reviewer",
+   "fieldtype": "Link",
+   "label": "Assigned Reviewer",
+   "options": "User"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-12-17 19:09:13.617873",
+ "modified_by": "Administrator",
+ "module": "Localization Management System",
+ "name": "ERPNext Localization",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Localization Enabler",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Localization Reviewer",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "if_owner": 1,
+   "read": 1,
+   "role": "Localization Builder"
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title"
+}
