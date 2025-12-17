@@ -9,3 +9,5 @@ after_install = "localization_management_system.install.after_install"
 before_uninstall = "localization_management_system.uninstall.before_uninstall"
 
 app_include_js = "localization_management_system.bundle.js"
+
+export_python_type_annotations = True
