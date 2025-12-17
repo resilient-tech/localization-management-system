@@ -4,7 +4,7 @@ from frappe.custom.doctype.custom_field.custom_field import (
     create_custom_fields as _create_custom_fields,
 )
 
-from localization_management_system.constants import CUSTOMIZATION
+from localization_management_system.constants import CUSTOMIZATION, ROLES
 from localization_management_system.hooks import app_title as APP_NAME
 
 POST_INSTALL_PATCHES = []
@@ -25,6 +25,7 @@ def after_install():
 def setup_customization():
     create_custom_fields()
     create_property_setters()
+    create_roles(ROLES)
 
 
 def run_post_install_patches():
@@ -68,3 +69,15 @@ def _add_module(custom_fields: dict, module: str):
     for fields in custom_fields.values():
         for field in fields:
             field["module"] = module
+
+
+def create_roles(roles: list[dict]):
+    click.secho(f"Creating roles for {APP_NAME}...", fg="cyan", bold=True)
+
+    for role in roles:
+        try:
+            doc = frappe.new_doc("Role")
+            doc.update(role)
+            doc.save()
+        except frappe.DuplicateEntryError:
+            pass
