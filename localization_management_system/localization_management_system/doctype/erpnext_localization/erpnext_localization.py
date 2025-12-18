@@ -14,16 +14,18 @@ class ERPNextLocalization(Document):
     if TYPE_CHECKING:
         from frappe.types import DF
 
+        accept_terms_and_conditions: DF.Check
         applicable_for: DF.Literal["Accounting", "HR"]
         apply_to_review_localization_to_govt: DF.Literal["", "Yes", "No"]
         assigned_enabler: DF.Link | None
         assigned_reviewer: DF.Link | None
-        builder_mail: DF.Data
         company_name: DF.Data | None
         company_website: DF.Data | None
         country: DF.Link
         country_have_policy_for_open_source: DF.Literal["", "Yes", "No"]
         description: DF.SmallText | None
+        developer_github: DF.Data | None
+        developer_mail: DF.Data
         documentation_url: DF.Data | None
         estimated_completion_date: DF.Date | None
         govt_has_approved_localization: DF.Literal["", "Yes", "No"]
@@ -44,6 +46,7 @@ class ERPNextLocalization(Document):
             "Listed on Frappe Cloud",
             "Auto-install Enabled on FC",
         ]
+        proposal: DF.Attach | None
         published_date: DF.Date | None
         remarks: DF.SmallText | None
         repo: DF.Data | None
