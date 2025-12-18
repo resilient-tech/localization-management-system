@@ -334,6 +334,7 @@
    "fieldname": "developer_mail",
    "fieldtype": "Data",
    "label": "Mail",
+   "options": "Email",
    "reqd": 1
   },
   {
@@ -386,7 +387,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-18 12:31:08.953095",
+ "modified": "2025-12-18 16:13:57.470316",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
