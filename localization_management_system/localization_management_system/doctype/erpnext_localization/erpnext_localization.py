@@ -70,3 +70,12 @@ class ERPNextLocalization(WebsiteGenerator):
                     "title": _("Terms and Conditions"),
                 }
             )
+
+
+def get_list_context(context=None):
+    context.update(
+        {
+            "title": _("ERPNext Localizations"),
+            "no_breadcrumbs": True,
+        }
+    )
