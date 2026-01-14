@@ -1,7 +1,9 @@
 # Copyright (c) 2025, Frappe Technologies and contributors
 # For license information, please see license.txt
 
-# import frappe
+
+import frappe
+from frappe import _
 from frappe.model.document import Document
 
 
@@ -54,5 +56,13 @@ class ERPNextLocalization(Document):
         repo_visibility: DF.Literal["", "Public", "Private"]
         status: DF.Literal["Open", "Replied", "Pending", "Cancelled"]
         title: DF.Data
+
     # end: auto-generated types
-    pass
+    def validate(self):
+        if not self.accept_terms_and_conditions:
+            frappe.throw(
+                {
+                    "message": _("Please accept the Terms and Conditions to proceed."),
+                    "title": _("Terms and Conditions"),
+                }
+            )
