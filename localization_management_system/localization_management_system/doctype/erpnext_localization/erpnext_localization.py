@@ -4,10 +4,10 @@
 
 import frappe
 from frappe import _
-from frappe.model.document import Document
+from frappe.website.website_generator import WebsiteGenerator
 
 
-class ERPNextLocalization(Document):
+class ERPNextLocalization(WebsiteGenerator):
     # begin: auto-generated types
     # This code is auto-generated. Do not modify anything in this block.
 
@@ -29,6 +29,7 @@ class ERPNextLocalization(Document):
         developer_github: DF.Data | None
         developer_mail: DF.Data
         documentation_url: DF.Data | None
+        enable_webview: DF.Check
         estimated_completion_date: DF.Date | None
         govt_has_approved_localization: DF.Literal["", "Yes", "No"]
         have_identified_influence_person_to_influence: DF.Literal["", "Yes", "No"]
@@ -54,11 +55,14 @@ class ERPNextLocalization(Document):
         repo: DF.Data | None
         repo_permission_granted: DF.Literal["Yes", "No"]
         repo_visibility: DF.Literal["", "Public", "Private"]
+        route: DF.Data | None
         status: DF.Literal["Open", "Replied", "Pending", "Cancelled"]
         title: DF.Data
 
     # end: auto-generated types
     def validate(self):
+        super().validate()
+
         if not self.accept_terms_and_conditions:
             frappe.throw(
                 {

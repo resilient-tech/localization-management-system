@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "autoname": "naming_series:",
  "creation": "2025-12-17 16:15:39.913484",
  "doctype": "DocType",
@@ -21,9 +22,13 @@
   "remarks",
   "section_break_dzgs",
   "assigned_enabler",
-  "naming_series",
   "column_break_gtux",
   "assigned_reviewer",
+  "section_break_tqck",
+  "enable_webview",
+  "route",
+  "column_break_mgfp",
+  "naming_series",
   "developer_tab",
   "developer_details_section",
   "developer_mail",
@@ -185,7 +190,8 @@
   {
    "collapsible": 1,
    "fieldname": "section_break_dzgs",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Assignment"
   },
   {
    "fieldname": "column_break_gtux",
@@ -382,12 +388,35 @@
    "fieldtype": "Data",
    "label": "GitHub Profile",
    "options": "URL"
+  },
+  {
+   "fieldname": "section_break_tqck",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_mgfp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_webview",
+   "fieldtype": "Check",
+   "label": "Enable Web View",
+   "no_copy": 1
+  },
+  {
+   "depends_on": "eval: doc.enable_webview",
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
   }
  ],
  "grid_page_length": 50,
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
+ "is_published_field": "enable_webview",
  "links": [],
- "modified": "2025-12-18 16:13:57.470316",
+ "modified": "2026-01-14 23:41:16.892217",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
@@ -437,6 +466,7 @@
    "role": "Localization Developer"
   }
  ],
+ "route": "localization",
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
  "show_title_field_in_link": 1,
