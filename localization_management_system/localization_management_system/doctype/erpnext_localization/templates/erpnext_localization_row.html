@@ -1,4 +1,62 @@
-<div>
-	<a href="{{ doc.route }}">{{ doc.title or doc.name }}</a>
+<div class="localization-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)'">
+	<div style="display: flex; justify-content: space-between; align-items: start; gap: 20px;">
+		<div style="flex: 1;">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+				<h3 style="margin: 0; font-size: 1.25rem; font-weight: 600;">
+					<a href="{{ doc.route }}" style="color: #2563eb; text-decoration: none;">{{ doc.title }}</a>
+				</h3>
+				{% if doc.country %}
+				<span style="background: #dbeafe; color: #1e40af; padding: 4px 12px; border-radius: 12px; font-size: 0.875rem; font-weight: 500;">{{ doc.country }}</span>
+				{% endif %}
+			</div>
+
+			{% if doc.description %}
+			<p style="color: #64748b; margin: 0 0 12px 0; line-height: 1.6;">{{ doc.description[:150] }}{% if doc.description|length > 150 %}...{% endif %}</p>
+			{% endif %}
+
+			<div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.875rem;">
+				{% if doc.applicable_for %}
+				<div style="display: flex; align-items: center; gap: 6px;">
+					<svg style="width: 16px; height: 16px; color: #64748b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+					</svg>
+					<span style="color: #64748b;"><strong>Type:</strong> {{ doc.applicable_for }}</span>
+				</div>
+				{% endif %}
+
+				{% if doc.progress_status %}
+				<div style="display: flex; align-items: center; gap: 6px;">
+					<svg style="width: 16px; height: 16px; color: #64748b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+					</svg>
+					<span style="color: #64748b;"><strong>Status:</strong> {{ doc.progress_status }}</span>
+				</div>
+				{% endif %}
+
+				{% if doc.estimated_completion_date %}
+				<div style="display: flex; align-items: center; gap: 6px;">
+					<svg style="width: 16px; height: 16px; color: #64748b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+					</svg>
+					<span style="color: #64748b;"><strong>Est. Completion:</strong> {{ frappe.utils.formatdate(doc.estimated_completion_date, "MMM YYYY") }}</span>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+			{% if doc.is_published %}
+			<span style="background: #dcfce7; color: #166534; padding: 6px 16px; border-radius: 12px; font-size: 0.875rem; font-weight: 600;">Published</span>
+			{% else %}
+			<span style="background: #fef3c7; color: #92400e; padding: 6px 16px; border-radius: 12px; font-size: 0.875rem; font-weight: 600;">In Progress</span>
+			{% endif %}
+
+			<a href="{{ doc.route }}" style="color: #2563eb; text-decoration: none; font-size: 0.875rem; font-weight: 500; display: flex; align-items: center; gap: 4px;">
+				View Details
+				<svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+				</svg>
+			</a>
+		</div>
+	</div>
 </div>
-<!-- this is a sample default list template -->
