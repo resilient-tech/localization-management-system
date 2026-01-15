@@ -31,7 +31,6 @@ class ERPNextLocalization(WebsiteGenerator):
         developer_github: DF.Data | None
         developer_mail: DF.Data
         documentation_url: DF.Data | None
-        enable_webview: DF.Check
         estimated_completion_date: DF.Date | None
         govt_has_approved_localization: DF.Literal["", "Yes", "No"]
         have_identified_influence_person_to_influence: DF.Literal["", "Yes", "No"]
@@ -57,7 +56,6 @@ class ERPNextLocalization(WebsiteGenerator):
         repo: DF.Data | None
         repo_permission_granted: DF.Literal["Yes", "No"]
         repo_visibility: DF.Literal["", "Public", "Private"]
-        route: DF.Data | None
         status: DF.Literal["Open", "Replied", "Pending", "Cancelled"]
         title: DF.Data
     # end: auto-generated types
