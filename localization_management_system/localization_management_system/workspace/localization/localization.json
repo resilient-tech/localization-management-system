@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Localization",
  "links": [],
- "modified": "2026-01-15 10:47:30.135358",
+ "modified": "2026-01-15 14:09:08.502296",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "Localization",
@@ -22,7 +22,17 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Localization Developer"
+  },
+  {
+   "role": "Localization Enabler"
+  },
+  {
+   "role": "Localization Reviewer"
+  }
+ ],
  "sequence_id": 28.0,
  "shortcuts": [
   {

@@ -40,15 +40,7 @@ class ERPNextLocalization(WebsiteGenerator):
         naming_series: DF.Literal["ERP-LOC-.YYYY.-"]
         open_source_policy_doc: DF.Data | None
         partner: DF.Link | None
-        progress_status: DF.Literal[
-            "",
-            "Shortlisted Partner",
-            "Development Started",
-            "Development Completed",
-            "Testing Completed",
-            "Listed on Frappe Cloud",
-            "Auto-install Enabled on FC",
-        ]
+        progress_status: DF.Literal["", "Shortlisted Partner", "Development Started", "Development Completed", "Testing Completed", "Listed on Frappe Cloud", "Auto-install Enabled on FC"]
         proposal: DF.Attach | None
         published_date: DF.Date | None
         remarks: DF.SmallText | None
@@ -58,7 +50,6 @@ class ERPNextLocalization(WebsiteGenerator):
         route: DF.Data | None
         status: DF.Literal["Open", "Replied", "Pending", "Cancelled"]
         title: DF.Data
-
     # end: auto-generated types
     def validate(self):
         super().validate()

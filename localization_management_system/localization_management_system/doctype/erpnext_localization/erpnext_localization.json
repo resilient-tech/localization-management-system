@@ -422,7 +422,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-15 11:42:39.541780",
+ "modified": "2026-01-15 13:11:58.373426",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
@@ -466,7 +466,11 @@
    "write": 1
   },
   {
-   "create": 1,
+   "read": 1,
+   "role": "Localization Developer"
+  },
+  {
+   "email": 1,
    "if_owner": 1,
    "read": 1,
    "role": "Localization Developer"
