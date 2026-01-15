@@ -2,116 +2,62 @@
 
 {% block page_content %}
 <style>
-.localization-detail {
-	max-width: 1200px;
-	margin: 0 auto;
+.localization-detail-card {
+	background: white;
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	box-shadow: var(--card-shadow);
+	padding: 1.5rem;
+	margin-bottom: 1.5rem;
 }
 
-.localization-header {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-	color: white;
-	padding: 40px;
-	border-radius: 12px;
-	margin-bottom: 30px;
-	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+.localization-header-section {
+	margin-bottom: 2rem;
 }
 
-.localization-header-content {
+.localization-header-row {
 	display: flex;
 	justify-content: space-between;
-	align-items: start;
-	flex-wrap: wrap;
-	gap: 20px;
+	align-items: flex-start;
+	gap: 1rem;
+	margin-bottom: 0.5rem;
 }
 
-.localization-header-main {
-	flex: 1;
-	min-width: 300px;
-}
-
-.localization-header h1 {
-	margin: 0 0 10px 0;
-	font-size: 2rem;
-	font-weight: 700;
-}
-
-.localization-header p {
+.localization-header-row h2 {
 	margin: 0;
-	font-size: 1.125rem;
-	opacity: 0.9;
+	flex: 1;
 }
 
-.localization-header-sidebar {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	align-items: flex-end;
-}
-
-.localization-status-badge {
-	background: white;
-	padding: 8px 20px;
-	border-radius: 20px;
-	font-weight: 600;
+.localization-pills {
 	font-size: 0.875rem;
-}
-
-.localization-status-badge.in-progress {
-	color: #d97706;
-}
-
-.localization-main-content {
-	max-width: 900px;
-	margin: 0 auto 30px auto;
-}
-
-.localization-card {
-	background: white;
-	padding: 30px;
-	border-radius: 12px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-	margin-bottom: 20px;
-}
-
-.localization-card h2 {
-	margin: 0 0 15px 0;
-	font-size: 1.5rem;
-	color: #1e293b;
-}
-
-.localization-card h3 {
-	margin: 0 0 20px 0;
-	font-size: 1.5rem;
-	color: #1e293b;
-}
-
-.localization-card p {
-	color: #64748b;
-	line-height: 1.8;
-	white-space: pre-wrap;
+	padding: 0.5rem 1rem;
+	white-space: nowrap;
 }
 
 .localization-info-grid {
 	display: grid;
-	gap: 8px;
+	gap: 0.375rem;
 }
 
 .localization-info-item {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 12px;
-	background: #f8fafc;
-	border-radius: 6px;
+	padding: 0.625rem 0.75rem;
+	background: var(--bg-light);
+	border-radius: 0.375rem;
 }
 
 .localization-info-item span {
-	color: #64748b;
+	color: var(--text-muted);
 	font-weight: 500;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 }
 
 .localization-info-item strong {
-	color: #1e293b;
+	color: var(--text-color);
 	font-weight: 600;
 }
 
@@ -121,116 +67,122 @@
 	text-decoration: none;
 }
 
-.localization-cta {
+.localization-info-item a:hover {
+	color: #1d4ed8;
+}
+
+.localization-cta-card {
 	background: white;
-	padding: 30px;
-	border-radius: 12px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	box-shadow: var(--card-shadow);
+	padding: 2rem;
 	text-align: center;
 }
 
-.localization-cta h3 {
-	margin: 0 0 10px 0;
-	font-size: 1.5rem;
-	color: #1e293b;
+.localization-cta-card h5 {
+	margin: 0 0 0.5rem 0;
 }
 
-.localization-cta p {
-	color: #64748b;
-	margin: 0 0 20px 0;
-}
-
-.localization-cta-buttons {
-	display: flex;
-	justify-content: center;
-	gap: 15px;
-	flex-wrap: wrap;
-}
-
-.localization-btn {
-	padding: 12px 24px;
-	border-radius: 8px;
-	text-decoration: none;
-	font-weight: 600;
-	display: inline-block;
-}
-
-.localization-btn.primary {
-	background: #2563eb;
-	color: white;
-}
-
-.localization-btn.secondary {
-	background: #64748b;
-	color: white;
-}
-
-@media (max-width: 768px) {
-	.localization-main-content {
-		grid-template-columns: 1fr;
-	}
+.localization-cta-card p {
+	margin: 0 0 1.5rem 0;
 }
 </style>
 
-<div class="localization-detail">
-	<!-- Header Section -->
-	<div class="localization-header">
-		<div class="localization-header-content">
-			<div class="localization-header-main">
-				<h1>{{ title }}</h1>
-				<p>{{ country }}</p>
+<div class="container py-4">
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			<!-- Header -->
+			<div class="localization-header-section">
+				<div class="localization-header-row">
+					<h2>{{ title }}</h2>
+					{% if progress_status %}
+					<span class="indicator-pill localization-pills {{ 'blue' if progress_status == 'Development Started' else 'orange' if progress_status == 'In Progress' else 'green' }}">{{ progress_status }}</span>
+					{% else %}
+					<span class="indicator-pill localization-pills orange">In Progress</span>
+					{% endif %}
+				</div>
+				<p class="text-muted mb-0" style="font-size: 1.125rem;">{{ country }}</p>
 			</div>
-			<div class="localization-header-sidebar">
-				<span class="localization-status-badge in-progress">{{ progress_status or "In Progress" }}</span>
-			</div>
-		</div>
-	</div>
 
-	<!-- Main Content -->
-	<div class="localization-main-content">
-		<!-- Description -->
+			<!-- Description -->
 			{% if description %}
-			<div class="localization-card">
-				<h2>Description</h2>
-				<p>{{ description }}</p>
+			<div class="localization-detail-card">
+				<p class="mb-0" style="line-height: 1.8;">{{ description }}</p>
 			</div>
 			{% endif %}
 
-			<!-- Development Progress -->
-			<div class="localization-card">
-				<h3>Development Information</h3>
+			<!-- Information -->
+			<div class="localization-detail-card">
 				<div class="localization-info-grid">
 					<div class="localization-info-item">
-						<span>Type</span>
+						<span>
+							<svg class="icon icon-sm">
+								<use href="#icon-tag"></use>
+							</svg>
+							Type
+						</span>
 						<strong>{{ applicable_for or "Not specified" }}</strong>
 					</div>
 					{% if estimated_completion_date %}
 					<div class="localization-info-item">
-						<span>Estimated Completion</span>
-						<strong>{{ frappe.utils.formatdate(estimated_completion_date, "dd MMM yyyy") }}</strong>
+						<span>
+							<svg class="icon icon-sm">
+								<use href="#icon-calendar"></use>
+							</svg>
+							Estimated Completion
+						</span>
+						<strong>{{ frappe.utils.format_date(estimated_completion_date, "dd MMM yyyy") }}</strong>
 					</div>
 					{% endif %}
 					{% if repo %}
 					<div class="localization-info-item">
-						<span>Repository</span>
+						<span>
+							<svg class="icon icon-sm">
+								<use href="#icon-github"></use>
+							</svg>
+							Repository
+						</span>
 						<a href="{{ repo }}" target="_blank">View on GitHub →</a>
 					</div>
 					{% endif %}
 					{% if documentation_url %}
 					<div class="localization-info-item">
-						<span>Documentation</span>
+						<span>
+							<svg class="icon icon-sm">
+								<use href="#icon-file-text"></use>
+							</svg>
+							Documentation
+						</span>
 						<a href="{{ documentation_url }}" target="_blank">Read Docs →</a>
 					</div>
 					{% endif %}
 					{% if marketplace_url %}
 					<div class="localization-info-item">
-						<span>Marketplace</span>
+						<span>
+							<svg class="icon icon-sm">
+								<use href="#icon-cloud"></use>
+							</svg>
+							Marketplace
+						</span>
 						<a href="{{ marketplace_url }}" target="_blank">View on Frappe Cloud →</a>
 					</div>
 					{% endif %}
+				</div>
+			</div>
+
+			<!-- Call to Action -->
+			<div class="localization-cta-card">
+				<h5>Want to Contribute?</h5>
+				<p class="text-muted">Help us build and improve ERPNext localizations.</p>
+				<a href="/localization-application" class="btn btn-primary btn-sm">
+					<svg class="icon icon-sm mr-1">
+						<use href="#icon-edit"></use>
+					</svg>
+					Apply Now
+				</a>
 			</div>
 		</div>
 	</div>
-
 </div>
 {% endblock %}

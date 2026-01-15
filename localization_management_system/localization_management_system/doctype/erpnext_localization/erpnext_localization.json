@@ -9,6 +9,7 @@
   "basic_details_section",
   "title",
   "country",
+  "country_code",
   "applicable_for",
   "proposal",
   "column_break_pqnf",
@@ -342,6 +343,13 @@
   {
    "fieldname": "column_break_twky",
    "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "country.code",
+   "fieldname": "country_code",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Country Code"
   }
  ],
  "grid_page_length": 50,
@@ -349,7 +357,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-15 18:12:28.192895",
+ "modified": "2026-01-15 19:57:26.683116",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",

@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"R4lh_ufUMy\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Localization</span>\",\"col\":12}},{\"id\":\"QihZijhuVV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ERPNext Localization\",\"col\":3}},{\"id\":\"AjtF543aTo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Frappe Partner\",\"col\":3}},{\"id\":\"LQ8cZl2GQY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Apply for Localization\",\"col\":3}}]",
+ "content": "[{\"id\":\"R4lh_ufUMy\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Localization</span>\",\"col\":12}},{\"id\":\"QihZijhuVV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ERPNext Localization\",\"col\":3}},{\"id\":\"AjtF543aTo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Frappe Partner\",\"col\":3}},{\"id\":\"LQ8cZl2GQY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Apply for Localization\",\"col\":3}},{\"id\":\"TxHy2ECiGn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"View Localizations\",\"col\":3}}]",
  "creation": "2025-12-18 16:42:42.489105",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Localization",
  "links": [],
- "modified": "2026-01-15 14:50:32.626096",
+ "modified": "2026-01-15 19:51:36.037585",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "Localization",
@@ -35,6 +35,13 @@
  ],
  "sequence_id": 28.0,
  "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "View Localizations",
+   "type": "URL",
+   "url": "/erpnext-localizations"
+  },
   {
    "color": "Grey",
    "doc_view": "List",

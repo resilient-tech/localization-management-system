@@ -1,172 +1,67 @@
 <style>
 .localization-card {
-	border: 1px solid #e2e8f0;
-	border-radius: 8px;
-	padding: 20px;
-	margin-bottom: 20px;
-	background: white;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-	transition: transform 0.2s, box-shadow 0.2s;
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	box-shadow: var(--card-shadow);
+	margin-bottom: 1rem;
+	transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .localization-card:hover {
+	box-shadow: var(--shadow-base);
 	transform: translateY(-2px);
-	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.localization-card-content {
-	display: flex;
-	justify-content: space-between;
-	align-items: start;
-	gap: 20px;
-}
-
-.localization-card-main {
-	flex: 1;
-}
-
-.localization-card-header {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	margin-bottom: 12px;
-}
-
-.localization-card-title {
-	margin: 0;
-	font-size: 1.25rem;
-	font-weight: 600;
-}
-
-.localization-card-title a {
-	color: #2563eb;
-	text-decoration: none;
-}
-
-.localization-card-country {
-	background: #dbeafe;
-	color: #1e40af;
-	padding: 4px 12px;
-	border-radius: 12px;
+.localization-badge {
 	font-size: 0.875rem;
-	font-weight: 500;
+	padding: 0.5rem 1rem;
 }
 
-.localization-card-description {
-	color: #64748b;
-	margin: 0 0 12px 0;
-	line-height: 1.6;
-}
-
-.localization-card-meta {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 16px;
+.localization-pills {
 	font-size: 0.875rem;
-}
-
-.localization-card-meta-item {
-	display: flex;
-	align-items: center;
-	gap: 6px;
-}
-
-.localization-card-meta-item svg {
-	width: 16px;
-	height: 16px;
-	color: #64748b;
-}
-
-.localization-card-meta-item span {
-	color: #64748b;
-}
-
-.localization-card-sidebar {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	gap: 8px;
-}
-
-.localization-card-badge {
-	padding: 6px 16px;
-	border-radius: 12px;
-	font-size: 0.875rem;
-	font-weight: 600;
-}
-
-.localization-card-badge.published {
-	background: #dcfce7;
-	color: #166534;
-}
-
-.localization-card-badge.in-progress {
-	background: #fef3c7;
-	color: #92400e;
-}
-
-.localization-card-link {
-	color: #2563eb;
-	text-decoration: none;
-	font-size: 0.875rem;
-	font-weight: 500;
-	display: flex;
-	align-items: center;
-	gap: 4px;
-}
-
-.localization-card-link svg {
-	width: 16px;
-	height: 16px;
+	padding: 1rem 1rem;
 }
 </style>
 
 <div class="localization-card">
-	<div class="localization-card-content">
-		<div class="localization-card-main">
-			<div class="localization-card-header">
-				<h3 class="localization-card-title">
-					<a href="{{ doc.route }}">{{ doc.title }}</a>
-				</h3>
-				{% if doc.country %}
-				<span class="localization-card-country">{{ doc.country }}</span>
+	<a href="{{ doc.route }}" class="no-underline">
+		<div class="row align-items-center py-3 px-3">
+			<div class="col-sm-8">
+				<div class="d-flex align-items-center mb-2">
+					<h5 class="mb-0 mr-2">{{ doc.title }}</h5>
+					{% if doc.country %}
+					<span class="badge badge-secondary localization-badge">{{ doc.country }}</span>
+					{% endif %}
+				</div>
+				{% if doc.description %}
+				<p class="text-muted small mb-2">{{ doc.description[:120] }}{% if doc.description|length > 120 %}...{% endif %}</p>
 				{% endif %}
+				<div class="text-muted small d-flex align-items-center">
+					{% if doc.applicable_for %}
+					<span class="d-flex align-items-center mr-3">
+						<svg class="icon icon-sm mr-1">
+							<use href="#icon-tag"></use>
+						</svg>
+						{{ doc.applicable_for }}
+					</span>
+					{% endif %}
+					{% if doc.estimated_completion_date %}
+					<span class="d-flex align-items-center">
+						<svg class="icon icon-sm mr-1">
+							<use href="#icon-calendar"></use>
+						</svg>
+						Est: {{ frappe.utils.format_date(doc.estimated_completion_date, "MMM YYYY") }}
+					</span>
+					{% endif %}
+				</div>
 			</div>
-
-			{% if doc.description %}
-			<p class="localization-card-description">{{ doc.description[:150] }}{% if doc.description|length > 150 %}...{% endif %}</p>
-			{% endif %}
-
-			<div class="localization-card-meta">
-				{% if doc.applicable_for %}
-				<div class="localization-card-meta-item">
-					<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-					</svg>
-					<span><strong>Type:</strong> {{ doc.applicable_for }}</span>
-				</div>
-				{% endif %}
-
-				{% if doc.estimated_completion_date %}
-				<div class="localization-card-meta-item">
-					<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-					</svg>
-					<span><strong>Est. Completion:</strong> {{ frappe.utils.formatdate(doc.estimated_completion_date, "MMM YYYY") }}</span>
-				</div>
+			<div class="col-sm-4 text-right">
+				{% if doc.progress_status %}
+				<span class="indicator-pill localization-pills {{ 'blue' if doc.progress_status == 'Development Started' else 'orange' if doc.progress_status == 'In Progress' else 'green' }}">{{ doc.progress_status }}</span>
+				{% else %}
+				<span class="indicator-pill localization-pills orange">In Progress</span>
 				{% endif %}
 			</div>
 		</div>
-
-		<div class="localization-card-sidebar">
-			<span class="localization-card-badge in-progress">{{ doc.progress_status or "In Progress" }}</span>
-
-			<a href="{{ doc.route }}" class="localization-card-link">
-				View Details
-				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-				</svg>
-			</a>
-		</div>
-	</div>
+	</a>
 </div>

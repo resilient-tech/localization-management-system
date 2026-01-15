@@ -23,6 +23,7 @@ class ERPNextLocalization(WebsiteGenerator):
         company_name: DF.Data | None
         company_website: DF.Data | None
         country: DF.Link
+        country_code: DF.Data | None
         description: DF.SmallText
         developer_github: DF.Data | None
         developer_mail: DF.Data
