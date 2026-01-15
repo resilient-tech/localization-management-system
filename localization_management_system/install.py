@@ -85,13 +85,35 @@ def create_roles(roles: list[dict]):
             pass
 
 
-# TODO: Implement the actual logic for creating profiles
 def create_role_profiles(profiles: list[dict]):
     click.secho(f"Creating role profiles for {APP_NAME}...", fg="cyan", bold=True)
+
+    for profile in profiles:
+        doc = frappe.new_doc("Role Profile")
+        doc.role_profile = profile["name"]
+
+        for role in profile["roles"]:
+            doc.append("roles", {"role": role})
+
+        doc.insert(ignore_permissions=True, ignore_if_duplicate=True)
 
 
 def create_module_profiles(profiles: list[dict]):
     click.secho(f"Creating module profiles for {APP_NAME}...", fg="cyan", bold=True)
 
+    all_modules = frappe.get_all("Module Def", pluck="name")
 
-# TODO: by default signup is true, default role is Localization Developer
+    for profile in profiles:
+        doc = frappe.new_doc("Module Profile")
+        doc.module_profile_name = profile["name"]
+
+        # Block all modules EXCEPT the ones specified in the profile
+        allowed_modules = set(profile["modules"])
+        for module in all_modules:
+            if module not in allowed_modules:
+                doc.append("block_modules", {"module": module})
+
+        doc.insert(ignore_permissions=True, ignore_if_duplicate=True)
+
+
+# TODO: by default signup is true then default role is Localization Developer

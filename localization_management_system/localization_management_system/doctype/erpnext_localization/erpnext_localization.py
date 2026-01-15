@@ -6,8 +6,6 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
-PROFILE = "Localization Outsider"
-
 
 class ERPNextLocalization(Document):
     # begin: auto-generated types
@@ -78,23 +76,19 @@ class ERPNextLocalization(Document):
         if not self.developer_mail or frappe.db.exists("User", self.developer_mail):
             return
 
-        user = frappe.new_doc("User")
-        user.email = self.developer_mail
-        user.first_name = self.developer_mail.split("@")[0]
-        user.send_welcome_email = True
-        user.enabled = 1
+        PROFILE = "Localization Developer"
 
-        user.role_profile_name = PROFILE
-        user.module_profile = PROFILE
+        user = frappe.new_doc("User")
+
+        user.update(
+            {
+                "email": self.developer_mail,
+                "first_name": self.developer_mail.split("@")[0],
+                "send_welcome_email": 1,
+                "role_profile_name": PROFILE,
+                "module_profile": PROFILE,
+            }
+        )
 
         user.flags.ignore_permissions = True
         user.save()
-
-
-def get_list_context(context=None):
-    context.update(
-        {
-            "title": _("ERPNext Localizations"),
-            "no_breadcrumbs": True,
-        }
-    )
