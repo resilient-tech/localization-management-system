@@ -26,7 +26,7 @@ def setup_customization():
     create_custom_fields()
     create_property_setters()
     create_roles(ROLES)
-    create_role_profiles(ROLE_PROFILES)
+    # create_role_profiles(ROLE_PROFILES) # TODO: Problem
     create_module_profiles(MODULE_PROFILES)
 
 

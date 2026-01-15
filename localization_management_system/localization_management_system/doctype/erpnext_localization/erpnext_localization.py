@@ -85,10 +85,12 @@ class ERPNextLocalization(Document):
                 "email": self.developer_mail,
                 "first_name": self.developer_mail.split("@")[0],
                 "send_welcome_email": 1,
-                "role_profile_name": PROFILE,
+                # "role_profile_name": PROFILE,
                 "module_profile": PROFILE,
             }
         )
+
+        user.add_roles([PROFILE])
 
         user.flags.ignore_permissions = True
         user.save()
