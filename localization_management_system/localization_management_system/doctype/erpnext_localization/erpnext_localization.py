@@ -85,8 +85,12 @@ class ERPNextLocalization(Document):
                 "email": self.developer_mail,
                 "first_name": self.developer_mail.split("@")[0],
                 "send_welcome_email": 1,
-                # "role_profile_name": PROFILE,
                 "module_profile": PROFILE,
+                "list_sidebar": 0,
+                "bulk_actions": 0,
+                "view_switcher": 0,
+                "form_sidebar": 0,
+                "dashboard": 0,
             }
         )
 
