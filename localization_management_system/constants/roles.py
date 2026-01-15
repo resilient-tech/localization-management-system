@@ -1,6 +1,6 @@
 ROLES = [
     {
-        "role_name": "Localization Builder",
+        "role_name": "Localization Developer",
         "desk_access": 0,
     },
     {
