@@ -30,6 +30,7 @@ class ERPNextLocalization(Document):
         developer_mail: DF.Data
         documentation_url: DF.Data | None
         estimated_completion_date: DF.Date | None
+        full_name: DF.Data
         govt_has_approved_localization: DF.Literal["", "Yes", "No"]
         have_identified_influence_person_to_influence: DF.Literal["", "Yes", "No"]
         is_partner: DF.Check
@@ -83,7 +84,7 @@ class ERPNextLocalization(Document):
         user.update(
             {
                 "email": self.developer_mail,
-                "first_name": self.developer_mail.split("@")[0],
+                "first_name": self.full_name.split(" ")[0],
                 "send_welcome_email": 1,
                 "module_profile": PROFILE,
                 "list_sidebar": 0,
