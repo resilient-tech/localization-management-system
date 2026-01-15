@@ -416,7 +416,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-14 23:41:16.892217",
+ "modified": "2026-01-15 10:45:09.296824",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
@@ -466,7 +466,7 @@
    "role": "Localization Developer"
   }
  ],
- "route": "localization",
+ "route": "erpnext-localizations",
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
  "show_title_field_in_link": 1,
