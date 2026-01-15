@@ -54,10 +54,11 @@ class ERPNextLocalization(WebsiteGenerator):
         title: DF.Data
     # end: auto-generated types
 
-    def before_insert(self):
-        self.create_desk_user()
-        self.owner = self.developer_mail
-        self.modified_by = self.developer_mail
+    # TODO: After release
+    # def before_insert(self):
+    #     self.create_desk_user()
+    #     self.owner = self.developer_mail
+    #     self.modified_by = self.developer_mail
 
     def validate(self):
         super().validate()
@@ -70,29 +71,30 @@ class ERPNextLocalization(WebsiteGenerator):
                 }
             )
 
-    def create_desk_user(self):
-        if not self.developer_mail or frappe.db.exists("User", self.developer_mail):
-            return
+    # TODO: After release
+    # def create_desk_user(self):
+    #     if not self.developer_mail or frappe.db.exists("User", self.developer_mail):
+    #         return
 
-        PROFILE = "Localization Developer"
+    #     PROFILE = "Localization Developer"
 
-        user = frappe.new_doc("User")
+    #     user = frappe.new_doc("User")
 
-        user.update(
-            {
-                "email": self.developer_mail,
-                "first_name": self.full_name.split(" ")[0],
-                "send_welcome_email": 1,
-                "module_profile": PROFILE,
-                "list_sidebar": 0,
-                "bulk_actions": 0,
-                "view_switcher": 0,
-                "form_sidebar": 0,
-                "dashboard": 0,
-            }
-        )
+    #     user.update(
+    #         {
+    #             "email": self.developer_mail,
+    #             "first_name": self.full_name.split(" ")[0],
+    #             "send_welcome_email": 1,
+    #             "module_profile": PROFILE,
+    #             "list_sidebar": 0,
+    #             "bulk_actions": 0,
+    #             "view_switcher": 0,
+    #             "form_sidebar": 0,
+    #             "dashboard": 0,
+    #         }
+    #     )
 
-        user.add_roles([PROFILE, "Inbox User"])
+    #     user.add_roles([PROFILE, "Inbox User"])
 
-        user.flags.ignore_permissions = True
-        user.insert(ignore_permissions=True)
+    #     user.flags.ignore_permissions = True
+    #     user.insert(ignore_permissions=True)

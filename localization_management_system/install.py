@@ -26,8 +26,9 @@ def setup_customization():
     create_custom_fields()
     create_property_setters()
     create_roles(ROLES)
-    # create_role_profiles(ROLE_PROFILES) # TODO: Problem
-    create_module_profiles(MODULE_PROFILES)
+    # TODO: After release
+    # create_role_profiles(ROLE_PROFILES)
+    # create_module_profiles(MODULE_PROFILES)
 
 
 def run_post_install_patches():
@@ -114,6 +115,3 @@ def create_module_profiles(profiles: list[dict]):
                 doc.append("block_modules", {"module": module})
 
         doc.insert(ignore_permissions=True, ignore_if_duplicate=True)
-
-
-# TODO: by default signup is true then default role is Localization Developer
