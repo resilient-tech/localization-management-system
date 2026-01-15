@@ -18,30 +18,31 @@ class ERPNextLocalization(WebsiteGenerator):
 
         accept_terms_and_conditions: DF.Check
         applicable_for: DF.Literal["Accounting", "HR"]
-        apply_to_review_localization_to_govt: DF.Literal["", "Yes", "No"]
         assigned_enabler: DF.Link | None
         assigned_reviewer: DF.Link | None
         company_name: DF.Data | None
         company_website: DF.Data | None
         country: DF.Link
-        country_have_policy_for_open_source: DF.Literal["", "Yes", "No"]
-        description: DF.SmallText | None
+        description: DF.SmallText
         developer_github: DF.Data | None
         developer_mail: DF.Data
         documentation_url: DF.Data | None
+        enable_webview: DF.Check
         estimated_completion_date: DF.Date | None
         full_name: DF.Data
-        govt_has_approved_localization: DF.Literal["", "Yes", "No"]
-        have_identified_influence_person_to_influence: DF.Literal["", "Yes", "No"]
         is_partner: DF.Check
-        is_published: DF.Check
-        is_web_view_enable: DF.Check
-        letter_send_to_govt: DF.Attach | None
         marketplace_url: DF.Data | None
         naming_series: DF.Literal["ERP-LOC-.YYYY.-"]
-        open_source_policy_doc: DF.Data | None
         partner: DF.Link | None
-        progress_status: DF.Literal["", "Shortlisted Partner", "Development Started", "Development Completed", "Testing Completed", "Listed on Frappe Cloud", "Auto-install Enabled on FC"]
+        progress_status: DF.Literal[
+            "",
+            "Shortlisted Partner",
+            "Development Started",
+            "Development Completed",
+            "Testing Completed",
+            "Listed on Frappe Cloud",
+            "Auto-install Enabled on FC",
+        ]
         proposal: DF.Attach | None
         published_date: DF.Date | None
         remarks: DF.SmallText | None
