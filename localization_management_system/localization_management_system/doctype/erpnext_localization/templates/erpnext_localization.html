@@ -1,141 +1,236 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-<div class="localization-detail" style="max-width: 1200px; margin: 0 auto;">
+<style>
+.localization-detail {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.localization-header {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	padding: 40px;
+	border-radius: 12px;
+	margin-bottom: 30px;
+	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.localization-header-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.localization-header-main {
+	flex: 1;
+	min-width: 300px;
+}
+
+.localization-header h1 {
+	margin: 0 0 10px 0;
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.localization-header p {
+	margin: 0;
+	font-size: 1.125rem;
+	opacity: 0.9;
+}
+
+.localization-header-sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: flex-end;
+}
+
+.localization-status-badge {
+	background: white;
+	padding: 8px 20px;
+	border-radius: 20px;
+	font-weight: 600;
+	font-size: 0.875rem;
+}
+
+.localization-status-badge.in-progress {
+	color: #d97706;
+}
+
+.localization-main-content {
+	max-width: 900px;
+	margin: 0 auto 30px auto;
+}
+
+.localization-card {
+	background: white;
+	padding: 30px;
+	border-radius: 12px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	margin-bottom: 20px;
+}
+
+.localization-card h2 {
+	margin: 0 0 15px 0;
+	font-size: 1.5rem;
+	color: #1e293b;
+}
+
+.localization-card h3 {
+	margin: 0 0 20px 0;
+	font-size: 1.5rem;
+	color: #1e293b;
+}
+
+.localization-card p {
+	color: #64748b;
+	line-height: 1.8;
+	white-space: pre-wrap;
+}
+
+.localization-info-grid {
+	display: grid;
+	gap: 8px;
+}
+
+.localization-info-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 12px;
+	background: #f8fafc;
+	border-radius: 6px;
+}
+
+.localization-info-item span {
+	color: #64748b;
+	font-weight: 500;
+}
+
+.localization-info-item strong {
+	color: #1e293b;
+	font-weight: 600;
+}
+
+.localization-info-item a {
+	color: #2563eb;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.localization-cta {
+	background: white;
+	padding: 30px;
+	border-radius: 12px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	text-align: center;
+}
+
+.localization-cta h3 {
+	margin: 0 0 10px 0;
+	font-size: 1.5rem;
+	color: #1e293b;
+}
+
+.localization-cta p {
+	color: #64748b;
+	margin: 0 0 20px 0;
+}
+
+.localization-cta-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	flex-wrap: wrap;
+}
+
+.localization-btn {
+	padding: 12px 24px;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: 600;
+	display: inline-block;
+}
+
+.localization-btn.primary {
+	background: #2563eb;
+	color: white;
+}
+
+.localization-btn.secondary {
+	background: #64748b;
+	color: white;
+}
+
+@media (max-width: 768px) {
+	.localization-main-content {
+		grid-template-columns: 1fr;
+	}
+}
+</style>
+
+<div class="localization-detail">
 	<!-- Header Section -->
-	<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-		<div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 20px;">
-			<div style="flex: 1; min-width: 300px;">
-				<h1 style="margin: 0 0 10px 0; font-size: 2rem; font-weight: 700;">{{ title }}</h1>
-				<p style="margin: 0; font-size: 1.125rem; opacity: 0.9;">{{ country }}</p>
+	<div class="localization-header">
+		<div class="localization-header-content">
+			<div class="localization-header-main">
+				<h1>{{ title }}</h1>
+				<p>{{ country }}</p>
 			</div>
-			<div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
-				{% if is_published %}
-				<span style="background: white; color: #059669; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 0.875rem;">✓ Published</span>
-				{% else %}
-				<span style="background: white; color: #d97706; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 0.875rem;">⚡ In Progress</span>
-				{% endif %}
-				{% if progress_status %}
-				<span style="background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 16px; font-size: 0.875rem;">{{ progress_status }}</span>
-				{% endif %}
+			<div class="localization-header-sidebar">
+				<span class="localization-status-badge in-progress">{{ progress_status or "In Progress" }}</span>
 			</div>
 		</div>
 	</div>
 
 	<!-- Main Content -->
-	<div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-bottom: 30px;">
-		<!-- Left Column -->
-		<div>
-			<!-- Description -->
+	<div class="localization-main-content">
+		<!-- Description -->
 			{% if description %}
-			<div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px;">
-				<h2 style="margin: 0 0 15px 0; font-size: 1.5rem; color: #1e293b;">About This Localization</h2>
-				<p style="color: #64748b; line-height: 1.8; white-space: pre-wrap;">{{ description }}</p>
+			<div class="localization-card">
+				<h2>Description</h2>
+				<p>{{ description }}</p>
 			</div>
 			{% endif %}
 
 			<!-- Development Progress -->
-			<div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px;">
-				<h2 style="margin: 0 0 20px 0; font-size: 1.5rem; color: #1e293b;">Development Information</h2>
-				<div style="display: grid; gap: 16px;">
-					<div style="display: flex; justify-content: space-between; padding: 12px; background: #f8fafc; border-radius: 8px;">
-						<span style="color: #64748b; font-weight: 500;">Type</span>
-						<span style="color: #1e293b; font-weight: 600;">{{ applicable_for or "Not specified" }}</span>
+			<div class="localization-card">
+				<h3>Development Information</h3>
+				<div class="localization-info-grid">
+					<div class="localization-info-item">
+						<span>Type</span>
+						<strong>{{ applicable_for or "Not specified" }}</strong>
 					</div>
 					{% if estimated_completion_date %}
-					<div style="display: flex; justify-content: space-between; padding: 12px; background: #f8fafc; border-radius: 8px;">
-						<span style="color: #64748b; font-weight: 500;">Estimated Completion</span>
-						<span style="color: #1e293b; font-weight: 600;">{{ frappe.utils.formatdate(estimated_completion_date, "dd MMM yyyy") }}</span>
+					<div class="localization-info-item">
+						<span>Estimated Completion</span>
+						<strong>{{ frappe.utils.formatdate(estimated_completion_date, "dd MMM yyyy") }}</strong>
 					</div>
 					{% endif %}
 					{% if repo %}
-					<div style="display: flex; justify-content: space-between; padding: 12px; background: #f8fafc; border-radius: 8px;">
-						<span style="color: #64748b; font-weight: 500;">Repository</span>
-						<a href="{{ repo }}" target="_blank" style="color: #2563eb; font-weight: 600; text-decoration: none;">View on GitHub →</a>
+					<div class="localization-info-item">
+						<span>Repository</span>
+						<a href="{{ repo }}" target="_blank">View on GitHub →</a>
 					</div>
 					{% endif %}
 					{% if documentation_url %}
-					<div style="display: flex; justify-content: space-between; padding: 12px; background: #f8fafc; border-radius: 8px;">
-						<span style="color: #64748b; font-weight: 500;">Documentation</span>
-						<a href="{{ documentation_url }}" target="_blank" style="color: #2563eb; font-weight: 600; text-decoration: none;">Read Docs →</a>
+					<div class="localization-info-item">
+						<span>Documentation</span>
+						<a href="{{ documentation_url }}" target="_blank">Read Docs →</a>
 					</div>
 					{% endif %}
 					{% if marketplace_url %}
-					<div style="display: flex; justify-content: space-between; padding: 12px; background: #f8fafc; border-radius: 8px;">
-						<span style="color: #64748b; font-weight: 500;">Marketplace</span>
-						<a href="{{ marketplace_url }}" target="_blank" style="color: #2563eb; font-weight: 600; text-decoration: none;">View on Frappe Cloud →</a>
+					<div class="localization-info-item">
+						<span>Marketplace</span>
+						<a href="{{ marketplace_url }}" target="_blank">View on Frappe Cloud →</a>
 					</div>
 					{% endif %}
-				</div>
-			</div>
-		</div>
-
-		<!-- Right Column -->
-		<div>
-			<!-- Contact Developer -->
-			<div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px;">
-				<h3 style="margin: 0 0 15px 0; font-size: 1.25rem; color: #1e293b;">Developer Contact</h3>
-				{% if developer_mail %}
-				<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-					<svg style="width: 20px; height: 20px; color: #64748b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-					</svg>
-					<a href="mailto:{{ developer_mail }}" style="color: #2563eb; text-decoration: none;">{{ developer_mail }}</a>
-				</div>
-				{% endif %}
-				{% if developer_github %}
-				<div style="display: flex; align-items: center; gap: 10px;">
-					<svg style="width: 20px; height: 20px; color: #64748b;" fill="currentColor" viewBox="0 0 24 24">
-						<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-					</svg>
-					<a href="{{ developer_github }}" target="_blank" style="color: #2563eb; text-decoration: none;">GitHub Profile →</a>
-				</div>
-				{% endif %}
-				{% if company_name %}
-				<div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
-					<p style="margin: 0; color: #64748b; font-size: 0.875rem;"><strong>Company:</strong> {{ company_name }}</p>
-					{% if company_website %}
-					<a href="{{ company_website }}" target="_blank" style="color: #2563eb; font-size: 0.875rem; text-decoration: none; margin-top: 5px; display: inline-block;">Visit Website →</a>
-					{% endif %}
-				</div>
-				{% endif %}
-			</div>
-
-			<!-- Quick Info -->
-			<div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 20px; border-radius: 12px;">
-				<h3 style="margin: 0 0 12px 0; font-size: 1rem; color: #0c4a6e; display: flex; align-items: center; gap: 8px;">
-					<svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-					</svg>
-					About This Project
-				</h3>
-				<p style="margin: 0; color: #0c4a6e; font-size: 0.875rem; line-height: 1.6;">
-					This localization is being developed as an open-source contribution to bring ERPNext compliance and features to {{ country }}. Community contributions are welcome!
-				</p>
 			</div>
 		</div>
 	</div>
 
-	<!-- Call to Action -->
-	<div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center;">
-		<h3 style="margin: 0 0 10px 0; font-size: 1.5rem; color: #1e293b;">Want to Contribute or Learn More?</h3>
-		<p style="color: #64748b; margin: 0 0 20px 0;">Get in touch with the development team or explore the repository to contribute.</p>
-		<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-			{% if developer_mail %}
-			<a href="mailto:{{ developer_mail }}" style="background: #2563eb; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">Contact Developer</a>
-			{% endif %}
-			{% if repo %}
-			<a href="{{ repo }}" target="_blank" style="background: #64748b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">View Repository</a>
-			{% endif %}
-		</div>
-	</div>
 </div>
-
-<style>
-@media (max-width: 768px) {
-	.localization-detail > div[style*="grid-template-columns"] {
-		grid-template-columns: 1fr !important;
-	}
-}
-</style>
 {% endblock %}
