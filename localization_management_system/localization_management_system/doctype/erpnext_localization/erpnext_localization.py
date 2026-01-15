@@ -4,12 +4,12 @@
 
 import frappe
 from frappe import _
-from frappe.website.website_generator import WebsiteGenerator
+from frappe.model.document import Document
 
 PROFILE = "Localization Outsider"
 
 
-class ERPNextLocalization(WebsiteGenerator):
+class ERPNextLocalization(Document):
     # begin: auto-generated types
     # This code is auto-generated. Do not modify anything in this block.
 
@@ -66,8 +66,6 @@ class ERPNextLocalization(WebsiteGenerator):
         self.modified_by = self.developer_mail
 
     def validate(self):
-        super().validate()
-
         if not self.accept_terms_and_conditions:
             frappe.throw(
                 {
