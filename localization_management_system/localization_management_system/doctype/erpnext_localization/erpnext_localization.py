@@ -4,10 +4,10 @@
 
 import frappe
 from frappe import _
-from frappe.model.document import Document
+from frappe.website.website_generator import WebsiteGenerator
 
 
-class ERPNextLocalization(Document):
+class ERPNextLocalization(WebsiteGenerator):
     # begin: auto-generated types
     # This code is auto-generated. Do not modify anything in this block.
 
@@ -35,26 +35,20 @@ class ERPNextLocalization(Document):
         have_identified_influence_person_to_influence: DF.Literal["", "Yes", "No"]
         is_partner: DF.Check
         is_published: DF.Check
+        is_web_view_enable: DF.Check
         letter_send_to_govt: DF.Attach | None
         marketplace_url: DF.Data | None
         naming_series: DF.Literal["ERP-LOC-.YYYY.-"]
         open_source_policy_doc: DF.Data | None
         partner: DF.Link | None
-        progress_status: DF.Literal[
-            "",
-            "Shortlisted Partner",
-            "Development Started",
-            "Development Completed",
-            "Testing Completed",
-            "Listed on Frappe Cloud",
-            "Auto-install Enabled on FC",
-        ]
+        progress_status: DF.Literal["", "Shortlisted Partner", "Development Started", "Development Completed", "Testing Completed", "Listed on Frappe Cloud", "Auto-install Enabled on FC"]
         proposal: DF.Attach | None
         published_date: DF.Date | None
         remarks: DF.SmallText | None
         repo: DF.Data | None
         repo_permission_granted: DF.Literal["Yes", "No"]
         repo_visibility: DF.Literal["", "Public", "Private"]
+        route: DF.Data | None
         status: DF.Literal["Open", "Replied", "Pending", "Cancelled"]
         title: DF.Data
     # end: auto-generated types
@@ -65,6 +59,8 @@ class ERPNextLocalization(Document):
         self.modified_by = self.developer_mail
 
     def validate(self):
+        super().validate()
+
         if not self.accept_terms_and_conditions:
             frappe.throw(
                 {
@@ -95,7 +91,7 @@ class ERPNextLocalization(Document):
             }
         )
 
-        user.add_roles([PROFILE])
+        user.add_roles([PROFILE, "Inbox User"])
 
         user.flags.ignore_permissions = True
-        user.save()
+        user.insert(ignore_permissions=True)

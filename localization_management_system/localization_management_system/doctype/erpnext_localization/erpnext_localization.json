@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "autoname": "naming_series:",
  "creation": "2025-12-17 16:15:39.913484",
  "doctype": "DocType",
@@ -25,6 +26,8 @@
   "assigned_reviewer",
   "section_break_tqck",
   "naming_series",
+  "route",
+  "is_web_view_enable",
   "column_break_mgfp",
   "developer_tab",
   "developer_details_section",
@@ -406,12 +409,25 @@
    "fieldtype": "Data",
    "label": "Full Name",
    "reqd": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_web_view_enable",
+   "fieldtype": "Check",
+   "label": "Is Web View Enable"
   }
  ],
  "grid_page_length": 50,
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
+ "is_published_field": "is_web_view_enable",
  "links": [],
- "modified": "2026-01-15 16:08:24.472213",
+ "modified": "2026-01-15 16:43:24.010912",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
@@ -501,6 +517,7 @@
    "role": "Localization Developer"
   }
  ],
+ "route": "erpnext-localization",
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
  "show_title_field_in_link": 1,
