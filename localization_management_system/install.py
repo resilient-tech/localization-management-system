@@ -92,3 +92,6 @@ def create_role_profiles(profiles: list[dict]):
 
 def create_module_profiles(profiles: list[dict]):
     click.secho(f"Creating module profiles for {APP_NAME}...", fg="cyan", bold=True)
+
+
+# TODO: by default signup is true, default role is Localization Developer
