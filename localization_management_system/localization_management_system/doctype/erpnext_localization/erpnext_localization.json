@@ -227,6 +227,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval: doc.progress_status === \"Listed on Frappe Cloud\" || doc.progress_status === \"Auto-install Enabled on FC\"",
    "fieldname": "marketplace_tab",
    "fieldtype": "Tab Break",
    "label": "Marketplace"
@@ -381,7 +382,8 @@
    "fieldname": "accept_terms_and_conditions",
    "fieldtype": "Check",
    "label": "Terms and Conditions are accepted",
-   "reqd": 1
+   "reqd": 1,
+   "set_only_once": 1
   },
   {
    "fieldname": "developer_github",
@@ -416,7 +418,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-15 10:45:09.296824",
+ "modified": "2026-01-15 10:59:34.940623",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
