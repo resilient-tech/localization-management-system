@@ -19,7 +19,7 @@
  "list_columns": [],
  "login_required": 0,
  "max_attachment_size": 5,
- "modified": "2026-01-15 00:51:08.795115",
+ "modified": "2026-01-15 11:32:24.137547",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "localization-application",
@@ -31,7 +31,7 @@
  "show_sidebar": 0,
  "success_message": "Our team will contact you soon with next steps.",
  "success_title": " Applied Successfully!",
- "success_url": "/localization",
+ "success_url": "/erpnext-localizations",
  "title": "Localization Application Form",
  "web_form_fields": [
   {
