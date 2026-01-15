@@ -6,6 +6,8 @@ import frappe
 from frappe import _
 from frappe.website.website_generator import WebsiteGenerator
 
+PROFILE = "Localization Outsider"
+
 
 class ERPNextLocalization(WebsiteGenerator):
     # begin: auto-generated types
@@ -40,7 +42,15 @@ class ERPNextLocalization(WebsiteGenerator):
         naming_series: DF.Literal["ERP-LOC-.YYYY.-"]
         open_source_policy_doc: DF.Data | None
         partner: DF.Link | None
-        progress_status: DF.Literal["", "Shortlisted Partner", "Development Started", "Development Completed", "Testing Completed", "Listed on Frappe Cloud", "Auto-install Enabled on FC"]
+        progress_status: DF.Literal[
+            "",
+            "Shortlisted Partner",
+            "Development Started",
+            "Development Completed",
+            "Testing Completed",
+            "Listed on Frappe Cloud",
+            "Auto-install Enabled on FC",
+        ]
         proposal: DF.Attach | None
         published_date: DF.Date | None
         remarks: DF.SmallText | None
@@ -51,6 +61,12 @@ class ERPNextLocalization(WebsiteGenerator):
         status: DF.Literal["Open", "Replied", "Pending", "Cancelled"]
         title: DF.Data
     # end: auto-generated types
+
+    def before_insert(self):
+        self.create_desk_user()
+        self.owner = self.developer_mail
+        self.modified_by = self.developer_mail
+
     def validate(self):
         super().validate()
 
@@ -61,6 +77,22 @@ class ERPNextLocalization(WebsiteGenerator):
                     "title": _("Terms and Conditions"),
                 }
             )
+
+    def create_desk_user(self):
+        if not self.developer_mail or frappe.db.exists("User", self.developer_mail):
+            return
+
+        user = frappe.new_doc("User")
+        user.email = self.developer_mail
+        user.first_name = self.developer_mail.split("@")[0]
+        user.send_welcome_email = True
+        user.enabled = 1
+
+        user.role_profile_name = PROFILE
+        user.module_profile = PROFILE
+
+        user.flags.ignore_permissions = True
+        user.save()
 
 
 def get_list_context(context=None):
