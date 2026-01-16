@@ -3,7 +3,7 @@ frappe.ready(function () {
         const accept_terms_and_conditions = frappe.web_form.get_value(["accept_terms_and_conditions"]);
 
         if (!accept_terms_and_conditions) {
-            frappe.msgprint("Please accept the terms and conditions!");
+            frappe.msgprint(__("Please accept the terms and conditions!"));
             return false;
         }
 
