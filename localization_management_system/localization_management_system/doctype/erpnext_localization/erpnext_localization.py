@@ -43,6 +43,8 @@ class ERPNextLocalization(WebsiteGenerator):
             "Testing Completed",
             "Listed on Frappe Cloud",
             "Auto-install Enabled on FC",
+            "Abandoned",
+            "Archived",
         ]
         proposal: DF.Attach | None
         published_date: DF.Date | None
@@ -99,3 +101,42 @@ class ERPNextLocalization(WebsiteGenerator):
 
     #     user.flags.ignore_permissions = True
     #     user.insert(ignore_permissions=True)
+
+
+def get_list_context(context=None):
+    context.update(
+        {
+            "show_search": True,
+            "no_breadcrumbs": True,
+            "title": "ERPNext Localizations",
+        }
+    )
+
+
+# Utility functions for Jinja templates
+def get_country_flag(country_code: str, width: int = 20, height: int = 15) -> str:
+    """
+    Returns the URL of the country flag image based on the country code.
+    """
+    return f'<img src="https://flagcdn.com/{country_code}.svg" width="{width}" height="{height}" alt="{country_code} flag">'
+
+
+def get_progress_pill_color(progress_status: str) -> str:
+    """
+    Returns the CSS class for the progress pill based on the progress status.
+    """
+    if not progress_status:
+        return "orange"
+
+    status_colors = {
+        "Shortlisted Partner": "orange",
+        "Development Started": "blue",
+        "Development Completed": "green",
+        "Testing Completed": "yellow",
+        "Listed on Frappe Cloud": "green",
+        "Auto-install Enabled on FC": "green",
+        "Abandoned": "red",
+        "Archived": "orange",
+    }
+
+    return status_colors.get(progress_status, "orange")
