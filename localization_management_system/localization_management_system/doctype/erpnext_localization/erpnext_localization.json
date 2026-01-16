@@ -1,0 +1,460 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-12-17 16:15:39.913484",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_section",
+  "title",
+  "country",
+  "country_code",
+  "applicable_for",
+  "proposal",
+  "column_break_pqnf",
+  "description",
+  "estimated_completion_date",
+  "progress_details_section",
+  "status",
+  "repo_permission_granted",
+  "assigned_enabler",
+  "assigned_reviewer",
+  "column_break_yvhz",
+  "progress_status",
+  "remarks",
+  "section_break_tqck",
+  "enable_webview",
+  "route",
+  "column_break_mgfp",
+  "naming_series",
+  "developer_tab",
+  "developer_details_section",
+  "full_name",
+  "developer_mail",
+  "column_break_ynrg",
+  "developer_github",
+  "section_break_axwf",
+  "is_partner",
+  "column_break_twky",
+  "partner",
+  "section_break_wmvj",
+  "company_name",
+  "column_break_zzuf",
+  "company_website",
+  "development_tab",
+  "development_details_section",
+  "repo",
+  "repo_visibility",
+  "column_break_teue",
+  "documentation_url",
+  "section_break_zeen",
+  "published_date",
+  "column_break_dkec",
+  "marketplace_url",
+  "terms_and_condition_tab",
+  "terms_conditions_section",
+  "terms_and_conditions",
+  "accept_terms_and_conditions"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pqnf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "ERP-LOC-.YYYY.-",
+   "permlevel": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Country",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "default": "Accounting",
+   "fieldname": "applicable_for",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Applicable for",
+   "options": "Accounting\nHR",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "basic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Basics"
+  },
+  {
+   "fieldname": "developer_details_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_partner",
+   "fieldtype": "Check",
+   "label": "Is Partner"
+  },
+  {
+   "fieldname": "column_break_ynrg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval: !doc.is_partner",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "depends_on": "eval: !doc.is_partner",
+   "fieldname": "company_website",
+   "fieldtype": "Data",
+   "label": "Company Website",
+   "options": "URL"
+  },
+  {
+   "fieldname": "development_details_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_teue",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "repo",
+   "fieldtype": "Data",
+   "label": "Repository",
+   "options": "URL"
+  },
+  {
+   "depends_on": "eval: doc.repo",
+   "fieldname": "repo_visibility",
+   "fieldtype": "Select",
+   "label": "Repo Visibility",
+   "options": "\nPublic\nPrivate"
+  },
+  {
+   "fieldname": "documentation_url",
+   "fieldtype": "Data",
+   "label": "Documentation URL",
+   "options": "URL"
+  },
+  {
+   "fieldname": "estimated_completion_date",
+   "fieldtype": "Date",
+   "label": "Estimated Date for Completion"
+  },
+  {
+   "default": "No",
+   "fieldname": "repo_permission_granted",
+   "fieldtype": "Select",
+   "label": "Repo Permission Grant to Frappe Team",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "developer_tab",
+   "fieldtype": "Tab Break",
+   "label": "Developer"
+  },
+  {
+   "fieldname": "development_tab",
+   "fieldtype": "Tab Break",
+   "label": "Development"
+  },
+  {
+   "fieldname": "progress_details_section",
+   "fieldtype": "Section Break",
+   "label": "Progress"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Open\nReplied\nPending\nCancelled",
+   "permlevel": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_yvhz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "marketplace_url",
+   "fieldtype": "Data",
+   "label": "Marketplace URL",
+   "mandatory_depends_on": "eval: doc.progress_status === \"Listed on Frappe Cloud\" || doc.progress_status === \"Auto-install Enabled on FC\"",
+   "options": "URL"
+  },
+  {
+   "default": "Today",
+   "fieldname": "published_date",
+   "fieldtype": "Date",
+   "label": "Published Date",
+   "mandatory_depends_on": "eval: doc.progress_status === \"Listed on Frappe Cloud\" || doc.progress_status === \"Auto-install Enabled on FC\""
+  },
+  {
+   "depends_on": "eval: doc.progress_status === \"Listed on Frappe Cloud\" || doc.progress_status === \"Auto-install Enabled on FC\"",
+   "fieldname": "section_break_zeen",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_dkec",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval: doc.is_partner",
+   "fieldname": "partner",
+   "fieldtype": "Link",
+   "label": "Partner",
+   "mandatory_depends_on": "eval: doc.is_partner",
+   "options": "Frappe Partner",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "progress_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Progress Status",
+   "options": "\nShortlisted Partner\nDevelopment Started\nDevelopment Completed\nTesting Completed\nListed on Frappe Cloud\nAuto-install Enabled on FC\nAbandoned\nArchived"
+  },
+  {
+   "fieldname": "assigned_enabler",
+   "fieldtype": "Link",
+   "label": "Assigned Enabler",
+   "options": "User"
+  },
+  {
+   "fieldname": "assigned_reviewer",
+   "fieldtype": "Link",
+   "label": "Assigned Reviewer",
+   "options": "User"
+  },
+  {
+   "fieldname": "developer_mail",
+   "fieldtype": "Data",
+   "label": "Mail",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_wmvj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_zzuf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "proposal",
+   "fieldtype": "Attach",
+   "label": "Proposal"
+  },
+  {
+   "fieldname": "terms_and_condition_tab",
+   "fieldtype": "Tab Break",
+   "label": "Terms and Conditions"
+  },
+  {
+   "fieldname": "terms_conditions_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "terms_and_conditions",
+   "fieldtype": "HTML",
+   "label": "Terms and Conditions",
+   "options": "<div class=\"terms-conditions\">\n<h4>ERPNext Localization Terms and Conditions</h4>\n<ol>\n<li><strong>Open Source Publication:</strong> By submitting this localization, you agree that your work will be made publicly available under an open source license.</li>\n<li><strong>Code Repository:</strong> The source code will be published on GitHub or similar platform for community access and contributions.</li>\n<li><strong>Documentation:</strong> You agree to provide comprehensive documentation for your localization.</li>\n<li><strong>Quality Standards:</strong> The localization must meet Frappe's quality and coding standards before publication.</li>\n<li><strong>Maintenance:</strong> You commit to maintaining the localization for compatibility with future ERPNext versions.</li>\n<li><strong>Attribution:</strong> Proper attribution will be given to you as the developer/contributor.</li>\n<li><strong>Community License:</strong> The localization will be available to the community under MIT or GPL license.</li>\n<li><strong>Frappe Cloud Integration:</strong> You agree to allow integration with Frappe Cloud marketplace if approved.</li>\n<li><strong>Government Compliance:</strong> You ensure the localization complies with local laws and regulations.</li>\n<li><strong>No Warranty:</strong> The localization is provided 'as-is' without warranty of any kind.</li>\n</ol>\n</div>"
+  },
+  {
+   "default": "0",
+   "fieldname": "accept_terms_and_conditions",
+   "fieldtype": "Check",
+   "label": "Terms and Conditions are accepted",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "developer_github",
+   "fieldtype": "Data",
+   "label": "GitHub Profile",
+   "options": "URL"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_tqck",
+   "fieldtype": "Section Break",
+   "label": "Web View"
+  },
+  {
+   "fieldname": "column_break_mgfp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "First Name + Last Name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route",
+   "no_copy": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_webview",
+   "fieldtype": "Check",
+   "label": "Enable Webview",
+   "no_copy": 1
+  },
+  {
+   "fieldname": "section_break_axwf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_twky",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "country.code",
+   "fieldname": "country_code",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Country Code"
+  }
+ ],
+ "grid_page_length": 50,
+ "has_web_view": 1,
+ "index_web_pages_for_search": 1,
+ "is_published_field": "enable_webview",
+ "links": [],
+ "modified": "2026-01-16 16:44:18.334915",
+ "modified_by": "Administrator",
+ "module": "Localization Management System",
+ "name": "ERPNext Localization",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Localization Enabler",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Localization Enabler",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Localization Reviewer",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Localization Reviewer",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Localization Developer"
+  },
+  {
+   "email": 1,
+   "if_owner": 1,
+   "read": 1,
+   "role": "Localization Developer"
+  }
+ ],
+ "route": "erpnext-localizations",
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title"
+}
