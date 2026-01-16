@@ -211,13 +211,15 @@
    "fieldname": "marketplace_url",
    "fieldtype": "Data",
    "label": "Marketplace URL",
+   "mandatory_depends_on": "eval: doc.progress_status === \"Listed on Frappe Cloud\" || doc.progress_status === \"Auto-install Enabled on FC\"",
    "options": "URL"
   },
   {
    "default": "Today",
    "fieldname": "published_date",
    "fieldtype": "Date",
-   "label": "Published Date"
+   "label": "Published Date",
+   "mandatory_depends_on": "eval: doc.progress_status === \"Listed on Frappe Cloud\" || doc.progress_status === \"Auto-install Enabled on FC\""
   },
   {
    "depends_on": "eval: doc.progress_status === \"Listed on Frappe Cloud\" || doc.progress_status === \"Auto-install Enabled on FC\"",
@@ -357,7 +359,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-16 11:59:45.085513",
+ "modified": "2026-01-16 16:44:18.334915",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
