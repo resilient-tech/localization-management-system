@@ -1,14 +1,15 @@
 <style>
 .localization-card {
-	border: 1px solid var(--border-color);
-	border-radius: var(--border-radius);
-	box-shadow: var(--card-shadow);
+	background: white;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 	margin-bottom: 1rem;
-	transition: box-shadow 0.2s, transform 0.2s;
+	transition: all 0.2s ease;
 }
 
 .localization-card:hover {
-	box-shadow: var(--shadow-base);
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	transform: translateY(-2px);
 }
 
@@ -20,6 +21,7 @@
 .localization-pills {
 	font-size: 0.875rem;
 	padding: 1rem 1rem;
+	white-space: nowrap;
 }
 </style>
 
