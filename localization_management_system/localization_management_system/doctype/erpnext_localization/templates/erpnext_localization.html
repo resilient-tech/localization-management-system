@@ -157,10 +157,10 @@
                             Country
                         </div>
                         <div class="localization-info-value">
-                            {% if country_code %}
-                                {{ get_country_flag(country_code) }}
+                            {% if doc.country_code %}
+                                {{ get_country_flag(doc.country_code) }}
                             {% endif %}
-                            {{ country }}
+                            {{ doc.country }}
                         </div>
                     </div>
 
@@ -171,10 +171,10 @@
                             </svg>
                             Type
                         </div>
-                        <div class="localization-info-value">{{ applicable_for or "Not specified" }}</div>
+                        <div class="localization-info-value">{{ doc.applicable_for or "Not specified" }}</div>
                     </div>
 
-                    {% if estimated_completion_date %}
+                    {% if doc.estimated_completion_date %}
                     <div class="localization-info-item">
                         <div class="localization-info-label">
                             <svg class="icon icon-sm">
@@ -183,12 +183,12 @@
                             Estimated Completion
                         </div>
                         <div class="localization-info-value">
-                            {{ frappe.utils.format_date(estimated_completion_date) }}
+                            {{ frappe.utils.format_date(doc.estimated_completion_date) }}
                         </div>
                     </div>
                     {% endif %}
 
-                    {% if repo %}
+                    {% if doc.repo %}
                     <div class="localization-info-item">
                         <div class="localization-info-label">
                             <svg class="icon icon-sm">
@@ -197,12 +197,12 @@
                             Repository
                         </div>
                         <div class="localization-info-value">
-                            <a href="{{ repo }}" target="_blank">View on GitHub →</a>
+                            <a href="{{ doc.repo }}" target="_blank">View on GitHub →</a>
                         </div>
                     </div>
                     {% endif %}
 
-                    {% if documentation_url %}
+                    {% if doc.documentation_url %}
                     <div class="localization-info-item">
                         <div class="localization-info-label">
                             <svg class="icon icon-sm">
@@ -216,7 +216,7 @@
                     </div>
                     {% endif %}
 
-                    {% if marketplace_url %}
+                    {% if doc.marketplace_url %}
                     <div class="localization-info-item">
                         <div class="localization-info-label">
                             <svg class="icon icon-sm">
@@ -225,7 +225,7 @@
                             Marketplace
                         </div>
                         <div class="localization-info-value">
-                            <a href="{{ marketplace_url }}" target="_blank">View on Frappe Cloud →</a>
+                            <a href="{{ doc.marketplace_url }}" target="_blank">View on Frappe Cloud →</a>
                         </div>
                     </div>
                     {% endif %}

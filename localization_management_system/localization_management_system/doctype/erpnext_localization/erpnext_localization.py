@@ -103,17 +103,7 @@ class ERPNextLocalization(WebsiteGenerator):
     #     user.insert(ignore_permissions=True)
 
 
-def get_list_context(context=None):
-    context.update(
-        {
-            "show_search": True,
-            "no_breadcrumbs": True,
-            "title": "ERPNext Localizations",
-        }
-    )
-
-
-# Utility functions for Jinja templates
+#### Utility functions for Jinja templates ####
 def get_country_flag(country_code: str, width: int = 20, height: int = 15) -> str:
     """
     Returns the URL of the country flag image based on the country code.
@@ -140,3 +130,52 @@ def get_progress_pill_color(progress_status: str) -> str:
     }
 
     return status_colors.get(progress_status, "orange")
+
+
+#### Web View Context Functions ####
+def get_localizations_list(
+    doctype,
+    txt=None,
+    filters=None,
+    limit_start=0,
+    limit_page_length=20,
+    order_by=None,
+):
+    EL = frappe.qb.DocType("ERPNext Localization")
+
+    # Build query
+    query = (
+        frappe.qb.from_(EL)
+        .select(
+            EL.name,
+            EL.route,
+            EL.title,
+            EL.country,
+            EL.country_code,
+            EL.applicable_for,
+            EL.description,
+            EL.progress_status,
+            EL.estimated_completion_date,
+            EL.repo,
+            EL.documentation_url,
+            EL.marketplace_url,
+        )
+        .where(EL.enable_webview == 1)
+        .orderby(EL.country)
+        .orderby(EL.title)
+        .limit(limit_page_length)
+        .offset(limit_start)
+    )
+
+    return query.run(as_dict=True)
+
+
+def get_list_context(context=None):
+    context.update(
+        {
+            "show_search": True,
+            "no_breadcrumbs": True,
+            "get_list": get_localizations_list,
+            "title": "ERPNext Localizations",
+        }
+    )
