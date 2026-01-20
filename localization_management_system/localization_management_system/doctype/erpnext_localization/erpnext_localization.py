@@ -54,7 +54,7 @@ class ERPNextLocalization(WebsiteGenerator):
         repo_visibility: DF.Literal["", "Public", "Private"]
         route: DF.Data | None
         status: DF.Literal["Open", "Replied", "Pending", "Cancelled"]
-        title: DF.Data
+        subject: DF.Data
     # end: auto-generated types
 
     # TODO: After release
@@ -149,7 +149,7 @@ def get_localizations_list(
         .select(
             EL.name,
             EL.route,
-            EL.title,
+            EL.subject,
             EL.country,
             EL.country_code,
             EL.applicable_for,
@@ -162,7 +162,8 @@ def get_localizations_list(
         )
         .where(EL.enable_webview == 1)
         .orderby(EL.country)
-        .orderby(EL.title)
+        .orderby(EL.subject)
+        .orderby(EL.progress_status)
         .limit(limit_page_length)
         .offset(limit_start)
     )

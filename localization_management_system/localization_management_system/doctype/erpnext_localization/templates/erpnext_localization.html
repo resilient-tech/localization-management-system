@@ -129,7 +129,7 @@
             <!-- Header -->
             <div class="localization-header-section">
                 <div class="localization-header-row">
-                    <h2>{{ title }}</h2>
+                    <h2>{{ doc.subject }}</h2>
                     {% if doc.progress_status %}
                         <span class="indicator-pill localization-pills no-indicator-dot ellipsis {{ get_progress_pill_color(doc.progress_status) }}">{{ doc.progress_status }}</span>
                     {% else %}
