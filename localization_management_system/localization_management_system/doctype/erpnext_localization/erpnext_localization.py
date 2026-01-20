@@ -34,7 +34,6 @@ class ERPNextLocalization(WebsiteGenerator):
         is_partner: DF.Check
         marketplace_url: DF.Data | None
         naming_series: DF.Literal["ERP-LOC-.YYYY.-"]
-        partner: DF.Link | None
         progress_status: DF.Literal[
             "Submitted",
             "Pending Review",

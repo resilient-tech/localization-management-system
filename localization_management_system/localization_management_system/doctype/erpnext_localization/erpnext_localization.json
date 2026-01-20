@@ -32,16 +32,11 @@
   "developer_details_section",
   "full_name",
   "developer_mail",
-  "column_break_ynrg",
   "developer_github",
-  "section_break_axwf",
-  "is_partner",
-  "column_break_twky",
-  "partner",
-  "section_break_wmvj",
+  "column_break_ynrg",
   "company_name",
-  "column_break_zzuf",
   "company_website",
+  "is_partner",
   "development_tab",
   "development_details_section",
   "repo",
@@ -120,13 +115,11 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval: !doc.is_partner",
    "fieldname": "company_name",
    "fieldtype": "Data",
    "label": "Company Name"
   },
   {
-   "depends_on": "eval: !doc.is_partner",
    "fieldname": "company_website",
    "fieldtype": "Data",
    "label": "Company Website"
@@ -219,15 +212,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval: doc.is_partner",
-   "fieldname": "partner",
-   "fieldtype": "Link",
-   "label": "Partner",
-   "mandatory_depends_on": "eval: doc.is_partner",
-   "options": "Frappe Partner",
-   "permlevel": 1
-  },
-  {
    "default": "Submitted",
    "fieldname": "progress_status",
    "fieldtype": "Select",
@@ -255,14 +239,6 @@
    "label": "Email",
    "options": "Email",
    "reqd": 1
-  },
-  {
-   "fieldname": "section_break_wmvj",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_zzuf",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "proposal",
@@ -328,14 +304,6 @@
    "no_copy": 1
   },
   {
-   "fieldname": "section_break_axwf",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_twky",
-   "fieldtype": "Column Break"
-  },
-  {
    "fetch_from": "country.code",
    "fieldname": "country_code",
    "fieldtype": "Data",
@@ -356,7 +324,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-20 12:04:11.578224",
+ "modified": "2026-01-20 12:20:49.444916",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
