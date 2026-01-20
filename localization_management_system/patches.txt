@@ -5,4 +5,4 @@
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
 localization_management_system.patches.set_subjects_from_title #1
-localization_management_system.patches.set_default_progress_status #2
+localization_management_system.patches.set_default_progress_status #1
