@@ -164,6 +164,7 @@ def get_localizations_list(
             EL.documentation_url,
             EL.marketplace_url,
             EL.company_name,
+            EL.company_website,
         )
         .where(EL.enable_webview == 1)
         .orderby(EL.country)

@@ -2,6 +2,22 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("ERPNext Localization", {
+    refresh(frm) {
+        if (frm.is_new()) return;
+
+        frm.trigger("add_publish_web_view_button");
+    },
+
+    add_publish_web_view_button(frm) {
+        frm.add_custom_button(
+            frm.doc.enable_webview ? __("Unpublish Web View") : __("Publish Web View"),
+            () => {
+                frm.set_value("enable_webview", !frm.doc.enable_webview);
+                frm.save();
+            }
+        );
+    },
+
     get_email_recipients(frm, type) {
         if (type !== "recipients") return [];
 

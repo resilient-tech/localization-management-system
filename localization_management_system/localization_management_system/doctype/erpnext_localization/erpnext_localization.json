@@ -277,7 +277,8 @@
    "collapsible": 1,
    "fieldname": "section_break_tqck",
    "fieldtype": "Section Break",
-   "label": "Web View"
+   "label": "Web View",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_mgfp",
@@ -294,14 +295,16 @@
    "fieldname": "route",
    "fieldtype": "Data",
    "label": "Route",
-   "no_copy": 1
+   "no_copy": 1,
+   "read_only": 1
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "enable_webview",
    "fieldtype": "Check",
    "label": "Enable Webview",
-   "no_copy": 1
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "fetch_from": "country.code",
@@ -324,7 +327,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-20 12:20:49.444916",
+ "modified": "2026-01-20 12:50:31.143294",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
