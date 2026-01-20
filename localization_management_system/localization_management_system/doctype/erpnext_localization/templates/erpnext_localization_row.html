@@ -12,6 +12,47 @@
 .localization-card:hover {
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	transform: translateY(-2px);
+    border: 1px solid #7a7c80;
+}
+
+.localization-card-content {
+	padding: 1.5rem;
+}
+
+.localization-card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 1rem;
+	gap: 1rem;
+}
+
+.localization-card-title-section {
+	flex: 1;
+}
+
+.localization-card-title-section h5 {
+	margin: 0;
+	color: #1e293b;
+	font-size: 1.125rem;
+	font-weight: 600;
+	display: inline-block;
+	margin-right: 0.75rem;
+}
+
+.localization-card-title-row {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+.localization-card-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	align-items: center;
 }
 
 .localization-badge {
@@ -23,12 +64,33 @@
 	background-color: #f1f5f9;
 	color: #475569;
 	border: 1px solid #e2e8f0;
+	border-radius: 4px;
+}
+
+.localization-meta-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	font-size: 0.875rem;
+	color: #64748b;
+}
+
+.localization-meta-item svg {
+	color: #94a3b8;
 }
 
 .localization-pills {
 	font-size: 0.875rem;
 	padding: 1rem 1rem;
 	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.localization-card-description {
+	color: #64748b;
+	font-size: 0.9375rem;
+	line-height: 1.6;
+	margin: 0;
 }
 
 .country-flag {
@@ -38,55 +100,62 @@
 	border-radius: 2px;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+
+@media (max-width: 768px) {
+	.localization-card-header {
+		flex-direction: column;
+	}
+
+	.localization-pills {
+		align-self: flex-start;
+	}
+}
 </style>
 
 <div class="localization-card">
 	<a href="{{ doc.route }}" class="no-underline">
-		<div class="row align-items-center py-3 px-3">
-			<div class="col-sm-8">
-
-                <div class="d-flex align-items-center mb-2">
-                    <h5 class="mb-0 mr-2">{{ doc.subject }}</h5>
-                    {% if doc.country %}
-                        <span class="badge localization-badge">
-                            {% if doc.country_code %}
-                                {{ get_country_flag(doc.country_code) }}
-                            {% endif %}
-                            {{ doc.country }}
-                        </span>
-                    {% endif %}
-                </div>
-
-                {% if doc.company_name %}
-                    <p class="text-muted small mb-2">
-                        <svg class="icon icon-sm mr-1">
-                            <use href="#icon-organization"></use>
-                        </svg>
-                        <strong>{{ doc.company_name }}</strong>
-                    </p>
-                {% endif %}
-
-                {% if doc.description %}
-                    <p class="text-muted small mb-2">{{ doc.description }}</p>
-                {% endif %}
-
-				<div class="text-muted small d-flex align-items-center">
-					{% if doc.applicable_for %}
-                        <span class="d-flex align-items-center mr-3">
-                            <svg class="icon icon-sm mr-1">
-                                <use href="#icon-tag"></use>
-                            </svg>
-                            {{ doc.applicable_for }}
-					</span>
+		<div class="localization-card-content">
+		<div class="localization-card-header">
+			<div class="localization-card-title-section">
+				<div class="localization-card-title-row">
+					<h5>{{ doc.subject }}</h5>
+					{% if doc.country %}
+						<span class="badge localization-badge">
+							{% if doc.country_code %}
+								{{ get_country_flag(doc.country_code) }}
+							{% endif %}
+							{{ doc.country }}
+						</span>
 					{% endif %}
 				</div>
 
+				<div class="localization-card-meta">
+					{% if doc.applicable_for %}
+						<span class="localization-meta-item">
+							<svg class="icon icon-sm">
+								<use href="#icon-tag"></use>
+							</svg>
+							{{ doc.applicable_for }}
+						</span>
+					{% endif %}
+
+					{% if doc.company_name %}
+						<span class="localization-meta-item">
+							<svg class="icon icon-sm">
+								<use href="#icon-organization"></use>
+							</svg>
+							<strong>{{ doc.company_name }}</strong>
+						</span>
+					{% endif %}
+				</div>
 			</div>
 
-            <div class="col-sm-4 text-right">
-                <span class="indicator-pill localization-pills no-indicator-dot ellipsis {{ get_progress_pill_color(doc.progress_status) }}">{{ doc.progress_status }}</span>
-            </div>
-
+			<span class="indicator-pill localization-pills no-indicator-dot ellipsis {{ get_progress_pill_color(doc.progress_status) }}">
+				{{ doc.progress_status }}
+			</span>
+		</div>			{% if doc.description %}
+				<p class="localization-card-description">{{ doc.description }}</p>
+			{% endif %}
 		</div>
 	</a>
 </div>
