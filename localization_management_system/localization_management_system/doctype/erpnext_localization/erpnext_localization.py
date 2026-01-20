@@ -36,8 +36,10 @@ class ERPNextLocalization(WebsiteGenerator):
         naming_series: DF.Literal["ERP-LOC-.YYYY.-"]
         partner: DF.Link | None
         progress_status: DF.Literal[
-            "",
+            "Submitted",
+            "Pending Review",
             "Shortlisted Partner",
+            "In Progress",
             "Development Started",
             "Development Completed",
             "Testing Completed",
@@ -119,7 +121,10 @@ def get_progress_pill_color(progress_status: str) -> str:
         return "orange"
 
     status_colors = {
+        "Submitted": "blue",
+        "Pending Review": "grey",
         "Shortlisted Partner": "orange",
+        "In Progress": "orange",
         "Development Started": "blue",
         "Development Completed": "green",
         "Testing Completed": "yellow",

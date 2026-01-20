@@ -228,12 +228,14 @@
    "permlevel": 1
   },
   {
+   "default": "Submitted",
    "fieldname": "progress_status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Progress Status",
-   "options": "\nShortlisted Partner\nDevelopment Started\nDevelopment Completed\nTesting Completed\nListed on Frappe Cloud\nAuto-install Enabled on FC\nAbandoned\nArchived"
+   "options": "Submitted\nPending Review\nShortlisted Partner\nIn Progress\nDevelopment Started\nDevelopment Completed\nTesting Completed\nListed on Frappe Cloud\nAuto-install Enabled on FC\nAbandoned\nArchived",
+   "reqd": 1
   },
   {
    "fieldname": "assigned_enabler",
@@ -354,7 +356,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-20 11:41:50.443575",
+ "modified": "2026-01-20 12:04:11.578224",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",

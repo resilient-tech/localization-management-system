@@ -75,11 +75,7 @@
 			</div>
 
             <div class="col-sm-4 text-right">
-                {% if doc.progress_status %}
-                    <span class="indicator-pill localization-pills no-indicator-dot ellipsis {{ get_progress_pill_color(doc.progress_status) }}">{{ doc.progress_status }}</span>
-                {% else %}
-                    <span class="indicator-pill localization-pills no-indicator-dot ellipsis orange">In Progress</span>
-                {% endif %}
+                <span class="indicator-pill localization-pills no-indicator-dot ellipsis {{ get_progress_pill_color(doc.progress_status) }}">{{ doc.progress_status }}</span>
             </div>
 
 		</div>
