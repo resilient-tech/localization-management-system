@@ -16,6 +16,10 @@ class ERPNextLocalization(WebsiteGenerator):
     if TYPE_CHECKING:
         from frappe.types import DF
 
+        from localization_management_system.localization_management_system.doctype.localization_task.localization_task import (
+            LocalizationTask,
+        )
+
         accept_terms_and_conditions: DF.Check
         applicable_for: DF.Literal["Accounting", "HR"]
         assigned_enabler: DF.Link | None
@@ -34,10 +38,11 @@ class ERPNextLocalization(WebsiteGenerator):
         is_partner: DF.Check
         marketplace_url: DF.Data | None
         naming_series: DF.Literal["ERP-LOC-.YYYY.-"]
-        partner: DF.Link | None
         progress_status: DF.Literal[
-            "",
+            "Submitted",
+            "Pending Review",
             "Shortlisted Partner",
+            "In Progress",
             "Development Started",
             "Development Completed",
             "Testing Completed",
@@ -54,7 +59,8 @@ class ERPNextLocalization(WebsiteGenerator):
         repo_visibility: DF.Literal["", "Public", "Private"]
         route: DF.Data | None
         status: DF.Literal["Open", "Replied", "Pending", "Cancelled"]
-        title: DF.Data
+        subject: DF.Data
+        tasks: DF.Table[LocalizationTask]
     # end: auto-generated types
 
     # TODO: After release
@@ -119,7 +125,10 @@ def get_progress_pill_color(progress_status: str) -> str:
         return "orange"
 
     status_colors = {
+        "Submitted": "blue",
+        "Pending Review": "grey",
         "Shortlisted Partner": "orange",
+        "In Progress": "orange",
         "Development Started": "blue",
         "Development Completed": "green",
         "Testing Completed": "yellow",
@@ -149,7 +158,7 @@ def get_localizations_list(
         .select(
             EL.name,
             EL.route,
-            EL.title,
+            EL.subject,
             EL.country,
             EL.country_code,
             EL.applicable_for,
@@ -159,10 +168,14 @@ def get_localizations_list(
             EL.repo,
             EL.documentation_url,
             EL.marketplace_url,
+            EL.company_name,
+            EL.company_website,
         )
         .where(EL.enable_webview == 1)
         .orderby(EL.country)
-        .orderby(EL.title)
+        .orderby(EL.company_name)
+        .orderby(EL.subject)
+        .orderby(EL.progress_status)
         .limit(limit_page_length)
         .offset(limit_start)
     )

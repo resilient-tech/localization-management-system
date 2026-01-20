@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Localization",
  "links": [],
- "modified": "2026-01-15 19:51:36.037585",
+ "modified": "2026-01-20 12:22:43.671999",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "Localization",
@@ -56,14 +56,6 @@
    "label": "Apply for Localization",
    "type": "URL",
    "url": "/localization-application"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Frappe Partner",
-   "link_to": "Frappe Partner",
-   "stats_filter": "[]",
-   "type": "DocType"
   }
  ],
  "title": "Localization"

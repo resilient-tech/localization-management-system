@@ -7,7 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "basic_details_section",
-  "title",
+  "subject",
   "country",
   "country_code",
   "applicable_for",
@@ -23,6 +23,8 @@
   "column_break_yvhz",
   "progress_status",
   "remarks",
+  "section_break_fwfo",
+  "tasks",
   "section_break_tqck",
   "enable_webview",
   "route",
@@ -32,16 +34,11 @@
   "developer_details_section",
   "full_name",
   "developer_mail",
-  "column_break_ynrg",
   "developer_github",
-  "section_break_axwf",
-  "is_partner",
-  "column_break_twky",
-  "partner",
-  "section_break_wmvj",
+  "column_break_ynrg",
   "company_name",
-  "column_break_zzuf",
   "company_website",
+  "is_partner",
   "development_tab",
   "development_details_section",
   "repo",
@@ -59,23 +56,15 @@
  ],
  "fields": [
   {
-   "fieldname": "title",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Title",
-   "reqd": 1
-  },
-  {
    "fieldname": "column_break_pqnf",
    "fieldtype": "Column Break"
   },
   {
+   "default": "ERP-LOC-.YYYY.-",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Naming Series",
    "options": "ERP-LOC-.YYYY.-",
-   "permlevel": 1,
    "reqd": 1
   },
   {
@@ -128,17 +117,14 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval: !doc.is_partner",
    "fieldname": "company_name",
    "fieldtype": "Data",
    "label": "Company Name"
   },
   {
-   "depends_on": "eval: !doc.is_partner",
    "fieldname": "company_website",
    "fieldtype": "Data",
-   "label": "Company Website",
-   "options": "URL"
+   "label": "Company Website"
   },
   {
    "fieldname": "development_details_section",
@@ -151,8 +137,7 @@
   {
    "fieldname": "repo",
    "fieldtype": "Data",
-   "label": "Repository",
-   "options": "URL"
+   "label": "Repository"
   },
   {
    "depends_on": "eval: doc.repo",
@@ -164,8 +149,7 @@
   {
    "fieldname": "documentation_url",
    "fieldtype": "Data",
-   "label": "Documentation URL",
-   "options": "URL"
+   "label": "Documentation URL"
   },
   {
    "fieldname": "estimated_completion_date",
@@ -211,8 +195,7 @@
    "fieldname": "marketplace_url",
    "fieldtype": "Data",
    "label": "Marketplace URL",
-   "mandatory_depends_on": "eval: doc.progress_status === \"Listed on Frappe Cloud\" || doc.progress_status === \"Auto-install Enabled on FC\"",
-   "options": "URL"
+   "mandatory_depends_on": "eval: doc.progress_status === \"Listed on Frappe Cloud\" || doc.progress_status === \"Auto-install Enabled on FC\""
   },
   {
    "default": "Today",
@@ -231,21 +214,14 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval: doc.is_partner",
-   "fieldname": "partner",
-   "fieldtype": "Link",
-   "label": "Partner",
-   "mandatory_depends_on": "eval: doc.is_partner",
-   "options": "Frappe Partner",
-   "permlevel": 1
-  },
-  {
+   "default": "Submitted",
    "fieldname": "progress_status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Progress Status",
-   "options": "\nShortlisted Partner\nDevelopment Started\nDevelopment Completed\nTesting Completed\nListed on Frappe Cloud\nAuto-install Enabled on FC\nAbandoned\nArchived"
+   "options": "Submitted\nPending Review\nShortlisted Partner\nIn Progress\nDevelopment Started\nDevelopment Completed\nTesting Completed\nListed on Frappe Cloud\nAuto-install Enabled on FC\nAbandoned\nArchived",
+   "reqd": 1
   },
   {
    "fieldname": "assigned_enabler",
@@ -262,17 +238,9 @@
   {
    "fieldname": "developer_mail",
    "fieldtype": "Data",
-   "label": "Mail",
+   "label": "Email",
    "options": "Email",
    "reqd": 1
-  },
-  {
-   "fieldname": "section_break_wmvj",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_zzuf",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "proposal",
@@ -292,7 +260,7 @@
    "fieldname": "terms_and_conditions",
    "fieldtype": "HTML",
    "label": "Terms and Conditions",
-   "options": "<div class=\"terms-conditions\">\n<h4>ERPNext Localization Terms and Conditions</h4>\n<ol>\n<li><strong>Open Source Publication:</strong> By submitting this localization, you agree that your work will be made publicly available under an open source license.</li>\n<li><strong>Code Repository:</strong> The source code will be published on GitHub or similar platform for community access and contributions.</li>\n<li><strong>Documentation:</strong> You agree to provide comprehensive documentation for your localization.</li>\n<li><strong>Quality Standards:</strong> The localization must meet Frappe's quality and coding standards before publication.</li>\n<li><strong>Maintenance:</strong> You commit to maintaining the localization for compatibility with future ERPNext versions.</li>\n<li><strong>Attribution:</strong> Proper attribution will be given to you as the developer/contributor.</li>\n<li><strong>Community License:</strong> The localization will be available to the community under MIT or GPL license.</li>\n<li><strong>Frappe Cloud Integration:</strong> You agree to allow integration with Frappe Cloud marketplace if approved.</li>\n<li><strong>Government Compliance:</strong> You ensure the localization complies with local laws and regulations.</li>\n<li><strong>No Warranty:</strong> The localization is provided 'as-is' without warranty of any kind.</li>\n</ol>\n</div>"
+   "options": "<div class=\"terms-conditions\">\n<h4>ERPNext Localization Terms and Conditions</h4>\n<ol>\n<li><strong>Open Source Publication:</strong> By submitting this localization, you agree that your work will be made publicly available under an open source license.</li>\n<li><strong>Code Repository:</strong> The source code will be published on GitHub or similar platform for community access and contributions.</li>\n<li><strong>Documentation:</strong> You agree to provide comprehensive documentation for your localization.</li>\n<li><strong>Quality Standards:</strong> The localization must meet Frappe's quality and coding standards before publication.</li>\n<li><strong>Maintenance:</strong> You commit to maintaining the localization for compatibility with future ERPNext versions.</li>\n<li><strong>Attribution:</strong> Proper attribution will be given to you as the developer/contributor.</li>\n<li><strong>Community License:</strong> The localization will be available to the community under MIT or GPL license.</li>\n<li><strong>Frappe Cloud Integration:</strong> You agree to allow integration with Frappe Cloud marketplace if approved.</li>\n<li><strong>Government Compliance:</strong> You ensure the localization complies with local laws and regulations.</li>\n</ol>\n</div>"
   },
   {
    "default": "0",
@@ -305,8 +273,7 @@
   {
    "fieldname": "developer_github",
    "fieldtype": "Data",
-   "label": "GitHub Profile",
-   "options": "URL"
+   "label": "GitHub Profile"
   },
   {
    "collapsible": 1,
@@ -329,22 +296,17 @@
    "fieldname": "route",
    "fieldtype": "Data",
    "label": "Route",
-   "no_copy": 1
+   "no_copy": 1,
+   "read_only": 1
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "enable_webview",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "Enable Webview",
-   "no_copy": 1
-  },
-  {
-   "fieldname": "section_break_axwf",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_twky",
-   "fieldtype": "Column Break"
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "fetch_from": "country.code",
@@ -352,6 +314,24 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Country Code"
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Subject",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_fwfo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tasks",
+   "fieldtype": "Table",
+   "label": "Tasks",
+   "options": "Localization Task"
   }
  ],
  "grid_page_length": 50,
@@ -359,7 +339,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-16 16:44:18.334915",
+ "modified": "2026-01-20 17:39:25.904751",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
@@ -456,5 +436,5 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "title"
+ "title_field": "subject"
 }

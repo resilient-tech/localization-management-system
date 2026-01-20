@@ -129,12 +129,8 @@
             <!-- Header -->
             <div class="localization-header-section">
                 <div class="localization-header-row">
-                    <h2>{{ title }}</h2>
-                    {% if doc.progress_status %}
-                        <span class="indicator-pill localization-pills no-indicator-dot ellipsis {{ get_progress_pill_color(doc.progress_status) }}">{{ doc.progress_status }}</span>
-                    {% else %}
-                        <span class="indicator-pill localization-pills no-indicator-dot ellipsis orange">In Progress</span>
-                    {% endif %}
+                    <h2>{{ doc.subject }}</h2>
+                    <span class="indicator-pill localization-pills no-indicator-dot ellipsis {{ get_progress_pill_color(doc.progress_status) }}">{{ doc.progress_status }}</span>
                 </div>
             </div>
 
@@ -174,6 +170,24 @@
                         <div class="localization-info-value">{{ doc.applicable_for or "Not specified" }}</div>
                     </div>
 
+                    {% if doc.company_name %}
+                    <div class="localization-info-item">
+                        <div class="localization-info-label">
+                            <svg class="icon icon-sm">
+                                <use href="#icon-organization"></use>
+                            </svg>
+                            Developed By
+                        </div>
+                        <div class="localization-info-value">
+                            {% if doc.company_website %}
+                                <a href="{{ doc.company_website }}" target="_blank">{{ doc.company_name }} →</a>
+                            {% else %}
+                                {{ doc.company_name }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+
                     {% if doc.estimated_completion_date %}
                     <div class="localization-info-item">
                         <div class="localization-info-label">
@@ -206,7 +220,7 @@
                     <div class="localization-info-item">
                         <div class="localization-info-label">
                             <svg class="icon icon-sm">
-                                <use href="#icon-small-file"></use>
+                                <use href="#icon-list-alt"></use>
                             </svg>
                             Documentation
                         </div>
