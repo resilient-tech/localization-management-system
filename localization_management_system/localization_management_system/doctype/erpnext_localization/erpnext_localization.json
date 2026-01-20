@@ -23,6 +23,8 @@
   "column_break_yvhz",
   "progress_status",
   "remarks",
+  "section_break_fwfo",
+  "tasks",
   "section_break_tqck",
   "enable_webview",
   "route",
@@ -320,6 +322,16 @@
    "in_standard_filter": 1,
    "label": "Subject",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_fwfo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tasks",
+   "fieldtype": "Table",
+   "label": "Tasks",
+   "options": "Localization Task"
   }
  ],
  "grid_page_length": 50,
@@ -327,7 +339,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-20 12:50:31.143294",
+ "modified": "2026-01-20 15:06:07.067476",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",

@@ -16,6 +16,10 @@ class ERPNextLocalization(WebsiteGenerator):
     if TYPE_CHECKING:
         from frappe.types import DF
 
+        from localization_management_system.localization_management_system.doctype.localization_task.localization_task import (
+            LocalizationTask,
+        )
+
         accept_terms_and_conditions: DF.Check
         applicable_for: DF.Literal["Accounting", "HR"]
         assigned_enabler: DF.Link | None
@@ -56,6 +60,7 @@ class ERPNextLocalization(WebsiteGenerator):
         route: DF.Data | None
         status: DF.Literal["Open", "Replied", "Pending", "Cancelled"]
         subject: DF.Data
+        tasks: DF.Table[LocalizationTask]
     # end: auto-generated types
 
     # TODO: After release
