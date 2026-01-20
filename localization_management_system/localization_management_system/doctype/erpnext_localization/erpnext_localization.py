@@ -163,9 +163,11 @@ def get_localizations_list(
             EL.repo,
             EL.documentation_url,
             EL.marketplace_url,
+            EL.company_name,
         )
         .where(EL.enable_webview == 1)
         .orderby(EL.country)
+        .orderby(EL.company_name)
         .orderby(EL.subject)
         .orderby(EL.progress_status)
         .limit(limit_page_length)
