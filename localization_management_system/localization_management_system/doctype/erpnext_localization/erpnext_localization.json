@@ -60,11 +60,11 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "ERP-LOC-.YYYY.-",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Naming Series",
    "options": "ERP-LOC-.YYYY.-",
-   "permlevel": 1,
    "reqd": 1
   },
   {
@@ -279,8 +279,7 @@
    "collapsible": 1,
    "fieldname": "section_break_tqck",
    "fieldtype": "Section Break",
-   "label": "Web View",
-   "read_only": 1
+   "label": "Web View"
   },
   {
    "fieldname": "column_break_mgfp",
@@ -304,6 +303,7 @@
    "default": "0",
    "fieldname": "enable_webview",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "Enable Webview",
    "no_copy": 1,
    "read_only": 1
@@ -339,7 +339,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-20 15:06:07.067476",
+ "modified": "2026-01-20 17:39:25.904751",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
