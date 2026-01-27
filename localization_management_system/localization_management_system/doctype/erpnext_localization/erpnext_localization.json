@@ -23,9 +23,10 @@
   "development_tab",
   "progress_details_section",
   "status",
-  "repo_permission_granted",
-  "column_break_yvhz",
   "progress_status",
+  "next_action_date",
+  "column_break_yvhz",
+  "repo_permission_granted",
   "remarks",
   "section_break_innr",
   "assigned_enabler",
@@ -348,6 +349,13 @@
   {
    "fieldname": "column_break_mnmj",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "next_action_date",
+   "fieldtype": "Date",
+   "label": "Next Action Date",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
@@ -355,7 +363,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "enable_webview",
  "links": [],
- "modified": "2026-01-27 10:34:14.567995",
+ "modified": "2026-01-27 10:38:08.241969",
  "modified_by": "Administrator",
  "module": "Localization Management System",
  "name": "ERPNext Localization",
