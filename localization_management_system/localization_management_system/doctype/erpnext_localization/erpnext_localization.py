@@ -169,6 +169,8 @@ def get_localizations_list(
             EL.repo,
             EL.documentation_url,
             EL.marketplace_url,
+            EL.full_name,
+            EL.developer_github,
             EL.company_name,
             EL.company_website,
         )
